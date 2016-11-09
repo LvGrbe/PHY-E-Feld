@@ -26,14 +26,22 @@ int Renderer::run()
 		sf::Event event;
 		while (renderWindow->pollEvent(event))
 		{
+			GUI::gui_Desktop->HandleEvent(event);
+
 			if (event.type == sf::Event::Closed)
 				renderWindow->close();
 		}
 
+		GUI::gui_Desktop->Update(1.0f);
+
 		renderWindow->clear();
-		
+
+		GUI::gui_Desktop->Add(GUI::gui_Window);
+		GUI::gui_sfgui.Display(*renderWindow);
+
 		renderWindow->display();
 
+		renderWindow->resetGLStates();
 	}
 
 	return 0;

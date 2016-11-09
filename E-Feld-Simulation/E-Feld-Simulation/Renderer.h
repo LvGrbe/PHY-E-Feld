@@ -1,7 +1,10 @@
 #pragma once
 #include "Renderer.h"
+#include "GUI.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <SFGUI\SFGUI.hpp>
+#include <SFGUI\Widgets.hpp>
 #include <memory>
 
 class Renderer
