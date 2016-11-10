@@ -19,7 +19,8 @@ private:
    std::shared_ptr<sfg::Scale> gui_scale;
    std::shared_ptr<sfg::Adjustment>  gui_adjustment;
    std::shared_ptr<sfg::Box> gui_scalebox;
-   ;
+   std::shared_ptr<sfg::Label> gui_scale_Label;
 
+   void AdjustmentChange();
 };
 
