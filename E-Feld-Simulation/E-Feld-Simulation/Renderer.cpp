@@ -14,8 +14,6 @@ Renderer::~Renderer()
 }
 
 
-
-
 // Window loop funktion
 int Renderer::run()
 {
@@ -36,6 +34,7 @@ int Renderer::run()
 
 		renderWindow->clear();
 
+		GUI::gui_Window->SetTitle("Werkzeug-Box");
 		GUI::gui_Desktop->Add(GUI::gui_Window);
 		GUI::gui_sfgui.Display(*renderWindow);
 
