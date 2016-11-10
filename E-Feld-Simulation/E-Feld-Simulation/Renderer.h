@@ -16,7 +16,8 @@ public:
 	//Shared Pointer zum Fenster
 	static std::shared_ptr<sf::RenderWindow> renderWindow;
 	// Window loop funktion
-	static int run();
+	 int run();
+	 void grid();
 private:
 	//GUI Inisalisieren
 	static GUI gui;

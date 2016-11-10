@@ -15,12 +15,14 @@ public:
 private:
    std::shared_ptr<sfg::Window>  gui_Window;
    std::shared_ptr<sfg::Box> gui_Box;
-   std::shared_ptr<sfg::Button> gui_button_create;
+   std::shared_ptr<sfg::Button> gui_button_erstelle;
    std::shared_ptr<sfg::Scale> gui_scale;
    std::shared_ptr<sfg::Adjustment>  gui_adjustment;
    std::shared_ptr<sfg::Box> gui_scalebox;
    std::shared_ptr<sfg::Label> gui_scale_Label;
 
+   //Signal Funktion der GUI
    void AdjustmentChange();
+   void Button_Erstelle_Click();
 };
 

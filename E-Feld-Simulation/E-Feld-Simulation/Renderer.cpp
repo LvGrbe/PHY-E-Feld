@@ -45,3 +45,14 @@ int Renderer::run()
 	return 0;
 }
 
+void Renderer::grid()
+{
+
+
+
+
+
+
+
+}
+
