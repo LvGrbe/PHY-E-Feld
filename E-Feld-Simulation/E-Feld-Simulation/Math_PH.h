@@ -16,7 +16,7 @@ namespace Physik
     */
     static Physik_Value distance(Physik_Value a, Physik_Value b)
     {
-        return std::squart(std::pow(a, 2) + std::pow(b, 2));
+        return std::squart(pow(a, 2) + pow(b, 2));
     }
 
     /* Coulomb'sches Gesetz
@@ -28,4 +28,19 @@ namespace Physik
         return ( 1/(4 * PI * Elektrische_Feldkonstante ))*((Ladung_1 * Ladung_2) / r);
     }
 	 
+	static Physik_Value Elektrische_Feldstärke_Allgemein(Physik_Value Kraft, Physik_Value Elektrische_Ladung)
+	{
+		return (Kraft / Elektrische_Ladung );
+	}
+
+	static Physik_Value Elektrische_Feldstärke_Kondensator(Physik_Value Spannung, Physik_Value Abstand)
+	{
+		return (Spannung / Abstand);
+	}
+
+	static Physik_Value Elektrische_Feldstärke_Abstand_r_von_Punktladung_Vakuum(Physik_Value Ladung, Physik_Value r)
+	{
+		return (Ladung / 4 * PI * Elektrische_Feldkonstante * pow(r, 2));
+	}
+
 }
