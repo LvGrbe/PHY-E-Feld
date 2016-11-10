@@ -2,13 +2,35 @@
 
 //Erstelle die Statischen Elemente
 sfg::SFGUI GUI::gui_sfgui = sfg::SFGUI();
-std::shared_ptr<sfg::Window> GUI::gui_Window = sfg::Window::Create();
 std::shared_ptr<sfg::Desktop> GUI::gui_Desktop = std::make_shared<sfg::Desktop>(sfg::Desktop());
-std::shared_ptr<sfg::Box> GUI::gui_Box = sfg::Box::Create();
+
 
 GUI::GUI()
-{
-	
+{   
+	//Erstellung der Elemente
+	gui_Window = sfg::Window::Create();
+	gui_Box = sfg::Box::Create();
+	gui_button_create = sfg::Button::Create();
+	gui_scale = sfg::Scale::Create(sfg::Scale::Orientation::HORIZONTAL);
+
+	//Init Einstellung
+	gui_Window->SetTitle("Werkzeug-Box");
+
+	//Set Einstellung Range
+	gui_scale->SetRequisition(sf::Vector2f(80.f, 20.f));
+	gui_adjustment = gui_scale->GetAdjustment();
+	gui_adjustment->SetUpper(e * 8);
+	gui_adjustment->SetLower(-e * 8);
+	gui_adjustment->SetMajorStep(e);
+	gui_adjustment->SetMinorStep(e);
+
+	//Pack Window
+	gui_scalebox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+	gui_scalebox->Pack(gui_scale, false, false);
+	gui_Box->Pack(gui_scalebox);
+	gui_Window->Add(GUI::gui_Box);
+	gui_Desktop->Add(GUI::gui_Window);
+
 }
 
 
