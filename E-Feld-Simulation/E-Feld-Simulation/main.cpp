@@ -3,11 +3,10 @@
 #include <SFML\Graphics.hpp>
 
 
-
-
 int main()  //Program Einstiegspunkt
 {	
-	Renderer::run();
+	Renderer rd;
+	rd.run();
 
 	return 0;
 }
