@@ -10,13 +10,19 @@ typedef Physik_Value long double
 namespace Physik 
 {
     /* Satz des Pytagoras 
-        a in m   
+        a in m  
+        b in m 
+        return c in m
     */
     static Physik_Value distance(Physik_Value a, Physik_Value b)
     {
         return std::squart(std::pow(a, 2) + std::pow(b, 2));
     }
 
+    /* Coulomb'sches Gesetz
+        Ladung_1 & Ladung_2 in c
+        r in m
+    */
     static Physik_Value Coulomb_sches_gesetz(Physik_Value Ladung_1, Physik_Value Ladung_2, Physik_Value r)
     {
         return ( 1/(4 * PI * Elektrische_Feldkonstante ))*((Ladung_1 * Ladung_2) / r);
