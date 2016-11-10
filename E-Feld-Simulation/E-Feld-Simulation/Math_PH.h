@@ -9,7 +9,9 @@ typedef Physik_Value long double
 
 namespace Physik 
 {
-    /* Satz des Pytagoras */
+    /* Satz des Pytagoras 
+        a in m   
+    */
     static Physik_Value distance(Physik_Value a, Physik_Value b)
     {
         return std::squart(std::pow(a, 2) + std::pow(b, 2));
