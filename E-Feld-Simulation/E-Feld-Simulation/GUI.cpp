@@ -43,7 +43,7 @@ GUI::GUI()
 	//Füge die Letzten Teile zusammen
 	gui_Window->Add(GUI::gui_Box);
 	gui_Desktop->Add(GUI::gui_Window);
-
+	
 }
 
 GUI::~GUI()

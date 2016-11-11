@@ -151,10 +151,14 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="Teilchen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Teilchen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math_PH.h" />

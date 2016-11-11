@@ -17,8 +17,10 @@ Renderer::~Renderer()
 
 // Window loop funktion
 int Renderer::run()
-{
-	gridvar = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
+{    
+	x_scl = 50.;
+	y_scl = 50.;
+	gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
 
 	while (renderWindow->isOpen())
 	{
@@ -35,7 +37,7 @@ int Renderer::run()
 				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
 				renderWindow->setView(sf::View(visibleArea));
 
-				gridvar = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
+				gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
 
 			}
 			
@@ -116,17 +118,10 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 
 		}
 
-
 	}
 
 
 	return vec_vertex;
-
-
-}
-
-void Renderer::set_Window_Basis()
-{
 
 
 }
