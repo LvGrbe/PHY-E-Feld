@@ -19,7 +19,8 @@ Renderer::~Renderer()
 int Renderer::run()
 {
  
-	auto d = grid(800.0, 0.,50., 600., 0.,50.0);
+	auto D = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
+	std::vector<sf::VertexArray>* gridvar = &D;
 
 	while (renderWindow->isOpen())
 	{
@@ -31,22 +32,28 @@ int Renderer::run()
 
 			if (event.type == sf::Event::Closed)
 				renderWindow->close();
-			else if(event.type == sf::Event::Resized)
+			else if (event.type == sf::Event::Resized)
 			{
-				sf::View v = renderWindow->getView();				
-				v.move(event.size.width , event.size.height );
+				sf::View v = renderWindow->getView();
+				v.setSize(event.size.width, event.size.height);
 				renderWindow->setView(v);
+
+				auto D = grid(v.getSize().x, 0., 10., v.getSize().y, 0., 10.0);
+				std::vector<sf::VertexArray>* gridvar = &D;
 			}
+			
 		}
 
 		GUI::gui_Desktop->Update(1.0f);
 
+
 		renderWindow->clear();
 
+		
 
-		for (int i = 0; i < d.size(); i++)
+		for (int i = 0; i < gridvar->size(); i++)
 		{
-			renderWindow->draw(d[i]);
+			renderWindow->draw(gridvar->operator[](i));
 		}
 
 		GUI::gui_sfgui.Display(*renderWindow);
