@@ -19,7 +19,7 @@ Renderer::~Renderer()
 int Renderer::run()
 {
  
-	auto d = grid(800.0, 0.,20., 600., 0.,10.0);
+	auto d = grid(800.0, 0.,50., 600., 0.,50.0);
 
 	while (renderWindow->isOpen())
 	{
