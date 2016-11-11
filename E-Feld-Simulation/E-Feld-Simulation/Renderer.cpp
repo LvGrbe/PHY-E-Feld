@@ -18,9 +18,7 @@ Renderer::~Renderer()
 // Window loop funktion
 int Renderer::run()
 {
- 
-	auto D = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
-	std::vector<sf::VertexArray>* gridvar = &D;
+	gridvar = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
 
 	while (renderWindow->isOpen())
 	{
@@ -34,12 +32,11 @@ int Renderer::run()
 				renderWindow->close();
 			else if (event.type == sf::Event::Resized)
 			{
-				sf::View v = renderWindow->getView();
-				v.setSize(event.size.width, event.size.height);
-				renderWindow->setView(v);
+				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+				renderWindow->setView(sf::View(visibleArea));
 
-				auto D = grid(v.getSize().x, 0., 10., v.getSize().y, 0., 10.0);
-				std::vector<sf::VertexArray>* gridvar = &D;
+				gridvar = grid(renderWindow->getSize().x, 0., 10., renderWindow->getSize().y, 0., 10.0);
+
 			}
 			
 		}
@@ -51,13 +48,12 @@ int Renderer::run()
 
 		
 
-		for (int i = 0; i < gridvar->size(); i++)
+		for (int i = 0; i < gridvar.size(); i++)
 		{
-			renderWindow->draw(gridvar->operator[](i));
+			renderWindow->draw(gridvar[i]);
 		}
 
 		GUI::gui_sfgui.Display(*renderWindow);
-
 
 		renderWindow->display();
 

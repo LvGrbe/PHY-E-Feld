@@ -3,6 +3,7 @@
 #include "GUI.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <SFML\Window\Mouse.hpp>
 #include <SFGUI\SFGUI.hpp>
 #include <SFGUI\Widgets.hpp>
 #include <memory>
@@ -23,9 +24,9 @@ private:
 	//GUI Inisalisieren
 	static GUI gui;
 	
-	std::shared_ptr<sf::View> ViewPort;
-	
-	
+	std::vector<sf::VertexArray> gridvar;
+	long y_scl;
+	long x_scl;
 
 	
 };
