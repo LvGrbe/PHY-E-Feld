@@ -17,11 +17,13 @@ public:
 	static std::shared_ptr<sf::RenderWindow> renderWindow;
 	// Window loop funktion
 	 int run();
-	 void grid();
+	 std::vector<sf::VertexArray> grid(long x_max, long x_min, long x_scl, long y_max, long y_min, long y_scl);
+	 void set_Window_Basis();
 private:
 	//GUI Inisalisieren
 	static GUI gui;
 	
+	std::shared_ptr<sf::View> ViewPort;
 	
 	
 
