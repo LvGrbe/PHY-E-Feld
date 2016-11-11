@@ -31,6 +31,12 @@ int Renderer::run()
 
 			if (event.type == sf::Event::Closed)
 				renderWindow->close();
+			else if(event.type == sf::Event::Resized)
+			{
+				sf::View v = renderWindow->getView();				
+				v.move(event.size.width , event.size.height );
+				renderWindow->setView(v);
+			}
 		}
 
 		GUI::gui_Desktop->Update(1.0f);
