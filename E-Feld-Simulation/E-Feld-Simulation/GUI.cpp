@@ -58,10 +58,10 @@ void GUI::AdjustmentChange()
 	gui_scale_Label->SetText(sstr.str());
 }
 
-//Reaktion auf Button Klick
 void GUI::Button_Erstelle_Click()
 {
-	
+
+
 
 
 }

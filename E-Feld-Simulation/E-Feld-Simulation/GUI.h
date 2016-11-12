@@ -24,5 +24,6 @@ private:
    //Signal Funktion der GUI
    void AdjustmentChange();
    void Button_Erstelle_Click();
+
 };
 

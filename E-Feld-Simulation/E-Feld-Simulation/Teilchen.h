@@ -5,10 +5,12 @@
 class Teilchen
 {
 public:
-	Teilchen();
+	Teilchen(Physik_Value Ladung, sf::Vector2f position);
 	~Teilchen();
-	Physik_Value Ladung;
-	sf::Vector2f pos;
 
+	Physik_Value Q;
+	sf::Vector2f pos;
+    
+	sf::CircleShape Erstelle_Kreis_Ladung(Physik_Value Radius);
 };
 
