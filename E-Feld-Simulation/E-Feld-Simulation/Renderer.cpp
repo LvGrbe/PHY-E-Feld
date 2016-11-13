@@ -2,7 +2,7 @@
 
 //Dekelration des Smart_ptr zum Fenster
 std::shared_ptr<sf::RenderWindow> Renderer::renderWindow(new sf::RenderWindow(sf::VideoMode(800, 600), "E-Feld-Simulation"));
-GUI gui = GUI();
+GUI gui = GUI(Renderer::renderWindow);
 
 Renderer::Renderer()
 {
@@ -28,7 +28,7 @@ int Renderer::run()
 		sf::Event event;
 		while (renderWindow->pollEvent(event))
 		{
-			GUI::gui_Desktop->HandleEvent(event);
+			gui.gui_Desktop->HandleEvent(event);
 
 			if (event.type == sf::Event::Closed)
 				renderWindow->close();
@@ -43,19 +43,25 @@ int Renderer::run()
 			
 		}
 
-		GUI::gui_Desktop->Update(1.0f);
+		gui.gui_Desktop->Update(1.0f);
 
 
 		renderWindow->clear();
 
 		
-
+		//Zeichne Grid
 		for (int i = 0; i < gridvar.size(); i++)
 		{
 			renderWindow->draw(gridvar[i]);
 		}
 
-		GUI::gui_sfgui.Display(*renderWindow);
+		//Zeichen Teilchen
+		for (int i = 0; i < gui.Teilchen_vec.size(); i++)
+		{
+			renderWindow->draw(gui.Teilchen_vec[i].Erstelle_Kreis_Ladung(5.0));
+		}
+
+		gui.gui_sfgui.Display(*renderWindow);
 
 		renderWindow->display();
 

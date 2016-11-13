@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderer.h"
 #include "GUI.h"
+#include "Teilchen.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include <SFGUI\SFGUI.hpp>
@@ -19,12 +19,13 @@ public:
 	int run();
 private:
 	//GUI Inisalisieren
-	 std::vector<sf::VertexArray> grid(long x_max, long x_min, long x_scl, long y_max, long y_min, long y_scl);
+	static  GUI gui;
+
+	std::vector<sf::VertexArray> grid(long x_max, long x_min, long x_scl, long y_max, long y_min, long y_scl);
 	std::vector<sf::VertexArray> gridvar;
 	long y_scl;
 	long x_scl;
-protected:
-	static  GUI gui;
+	
 
 	
 };
