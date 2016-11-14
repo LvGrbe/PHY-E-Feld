@@ -3,7 +3,7 @@
 //Erstelle die Statischen Elemente
 sfg::SFGUI GUI::gui_sfgui = sfg::SFGUI();
 std::shared_ptr<sfg::Desktop> GUI::gui_Desktop = std::make_shared<sfg::Desktop>(sfg::Desktop());
-std::vector<Teilchen> GUI::Teilchen_vec = std::vector<Teilchen>();
+
 
 GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 {   
@@ -70,7 +70,7 @@ void GUI::Button_Erstelle_Click()
 		{
 			auto mouspos = sf::Mouse::getPosition(*gui_RenderWindow);
 			Teilchen teil = Teilchen(gui_adjustment->GetValue(),mouspos);
-			Teilchen_vec.push_back(teil);
+			Simulation::Teilchen_vec.push_back(teil);
 			break;
  		}
 	}

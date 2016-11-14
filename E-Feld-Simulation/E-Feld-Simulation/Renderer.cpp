@@ -6,6 +6,7 @@ GUI gui = GUI(Renderer::renderWindow);
 
 Renderer::Renderer()
 {
+	sim = Simulation(Renderer::renderWindow);
 
 }
 
@@ -56,10 +57,7 @@ int Renderer::run()
 		}
 
 		//Zeichen Teilchen
-		for (int i = 0; i < gui.Teilchen_vec.size(); i++)
-		{
-			renderWindow->draw(gui.Teilchen_vec[i].Erstelle_Kreis_Ladung(5.0));
-		}
+		sim.renderer_Teilchen();
 
 		gui.gui_sfgui.Display(*renderWindow);
 

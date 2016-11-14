@@ -1,6 +1,7 @@
 #pragma once
 #include "Math_PH.h"
 #include "Teilchen.h"
+#include "Simulation.h"
 #include <SFML\Graphics.hpp>
 #include <SFGUI\SFGUI.hpp>
 #include <SFGUI\Widgets.hpp>
@@ -14,7 +15,6 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
-	static std::vector<Teilchen> Teilchen_vec;
 private:
    std::shared_ptr<sf::RenderWindow> gui_RenderWindow;
    std::shared_ptr<sfg::Window>  gui_Window;
