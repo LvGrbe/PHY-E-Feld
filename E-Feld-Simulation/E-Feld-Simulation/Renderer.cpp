@@ -47,7 +47,7 @@ int Renderer::run()
 		gui.gui_Desktop->Update(1.0f);
 
 
-		renderWindow->clear();
+		renderWindow->clear(sf::Color::White);
 
 		
 		//Zeichne Grid
@@ -91,6 +91,8 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 				sf::VertexArray line(sf::Lines, 2);
 				line[0] = vec_Vec2f_hl[0];
 				line[1] = vec_Vec2f_hl[y_max];
+				line[0].color = sf::Color::Black;
+				line[1].color = sf::Color::Black;
 
 				vec_vertex.push_back(line);
 				vec_Vec2f_hl.clear();
@@ -115,6 +117,8 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 				sf::VertexArray line(sf::Lines, 2);
 				line[0] = vec_Vec2f_vr[0];
 				line[1] = vec_Vec2f_vr[x_max-1];
+				line[0].color = sf::Color::Black;
+				line[1].color = sf::Color::Black;
 
 				vec_vertex.push_back(line);
 				vec_Vec2f_vr.clear();
