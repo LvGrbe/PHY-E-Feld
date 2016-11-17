@@ -57,7 +57,9 @@ int Renderer::run()
 		}
 
 		//Zeichen Teilchen
+		sim.create_VerbindungsGeraden_Teilchen();
 		sim.renderer_Teilchen();
+		
 
 		gui.gui_sfgui.Display(*renderWindow);
 

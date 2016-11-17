@@ -1,19 +1,19 @@
-#include "Teilchen.h"
+#include "Punktladung.h"
 
 
 
-Teilchen::Teilchen(Physik_Value Ladung,sf::Vector2i position)
+Punktladung::Punktladung(Physik_Value Ladung,sf::Vector2i position)
 {
 	Q = Ladung;
 	pos = position;
 }
 
 
-Teilchen::~Teilchen()
+Punktladung::~Punktladung()
 {
 }
 
-sf::CircleShape Teilchen::Erstelle_Kreis_Ladung(Physik_Value Radius)
+sf::CircleShape Punktladung::Erstelle_Kreis_Ladung(Physik_Value Radius)
 {
 	sf::CircleShape Kreis = sf::CircleShape();
 	Kreis.setRadius(Radius);

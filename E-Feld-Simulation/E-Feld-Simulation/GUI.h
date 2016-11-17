@@ -1,6 +1,6 @@
 #pragma once
 #include "Math_PH.h"
-#include "Teilchen.h"
+#include "Punktladung.h"
 #include "Simulation.h"
 #include <SFML\Graphics.hpp>
 #include <SFGUI\SFGUI.hpp>

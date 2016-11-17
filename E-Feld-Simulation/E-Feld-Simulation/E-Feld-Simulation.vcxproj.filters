@@ -27,7 +27,13 @@
     <ClCompile Include="Simulation.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Teilchen.cpp">
+    <ClCompile Include="Darstellung_Feldlinien.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Verbindungs_geraden.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Punktladung.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +47,13 @@
     <ClInclude Include="Simulation.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Teilchen.h">
+    <ClInclude Include="Darstellung_Feldlinien.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Verbindungs_geraden.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Punktladung.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

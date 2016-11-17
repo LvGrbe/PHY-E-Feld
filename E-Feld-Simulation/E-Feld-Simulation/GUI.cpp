@@ -69,7 +69,7 @@ void GUI::Button_Erstelle_Click()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{
 			auto mouspos = sf::Mouse::getPosition(*gui_RenderWindow);
-			Teilchen teil = Teilchen(gui_adjustment->GetValue(),mouspos);
+			Punktladung teil = Punktladung(gui_adjustment->GetValue(),mouspos);
 			Simulation::Teilchen_vec.push_back(teil);
 			break;
  		}

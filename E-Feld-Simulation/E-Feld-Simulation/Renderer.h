@@ -1,6 +1,6 @@
 #pragma once
 #include "GUI.h"
-#include "Teilchen.h"
+#include "Punktladung.h"
 #include "Simulation.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>

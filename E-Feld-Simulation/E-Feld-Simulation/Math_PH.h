@@ -43,4 +43,5 @@ namespace Physik
 		return (Ladung / (4 * PI * Elektrische_Feldkonstante * pow(r, 2)));
 	}
 
+
 }

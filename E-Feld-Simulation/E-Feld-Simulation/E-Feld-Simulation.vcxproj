@@ -148,17 +148,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Darstellung_Feldlinien.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Simulation.cpp" />
-    <ClCompile Include="Teilchen.cpp" />
+    <ClCompile Include="Punktladung.cpp" />
+    <ClCompile Include="Verbindungs_geraden.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Darstellung_Feldlinien.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
-    <ClInclude Include="Teilchen.h" />
+    <ClInclude Include="Punktladung.h" />
+    <ClInclude Include="Verbindungs_geraden.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math_PH.h" />
