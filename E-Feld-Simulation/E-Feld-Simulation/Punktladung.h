@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-
+#include "Verbindunglines.h"
 #include "Math_PH.h"
 
 class Punktladung
@@ -12,7 +12,7 @@ public:
 	Physik_Value Q;
 	sf::Vector2i pos;
 
-
+	std::vector<Verbindunglines> vl_vec;
 	sf::CircleShape Erstelle_Kreis_Ladung(Physik_Value Radius);
 };
 

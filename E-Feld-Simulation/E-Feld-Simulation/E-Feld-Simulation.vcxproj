@@ -154,6 +154,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Punktladung.cpp" />
+    <ClCompile Include="Verbindunglines.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Darstellung_Feldlinien.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Punktladung.h" />
+    <ClInclude Include="Verbindunglines.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math_PH.h" />
