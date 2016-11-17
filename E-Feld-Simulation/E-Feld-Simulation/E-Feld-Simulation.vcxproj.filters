@@ -30,9 +30,6 @@
     <ClCompile Include="Darstellung_Feldlinien.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Verbindungs_geraden.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Punktladung.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Darstellung_Feldlinien.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Verbindungs_geraden.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Punktladung.h">
