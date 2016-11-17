@@ -4,7 +4,7 @@
 #include <memory>
 #include "Math_PH.h"
 #include "Punktladung.h"
-#include "Verbindunglines.h"
+
 #include "Darstellung_Feldlinien.h"
 
 class Simulation
@@ -17,7 +17,6 @@ public:
 	static std::vector<Punktladung> Teilchen_vec;
 	void renderer_Teilchen();
 
-	void create_lines_Punktladung();
 private:
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 

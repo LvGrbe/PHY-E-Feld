@@ -57,7 +57,6 @@ int Renderer::run()
 		}
 
 		//Zeichen Teilchen
-		sim.create_lines_Punktladung();
 		sim.renderer_Teilchen();
 		
 		gui.gui_sfgui.Display(*renderWindow);
