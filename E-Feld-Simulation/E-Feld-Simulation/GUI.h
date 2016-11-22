@@ -30,10 +30,15 @@ private:
    //Window 2
    std::shared_ptr<sfg::Window>  gui_Window2;
    std::shared_ptr<sfg::Box> gui_Box2_vertical;
+   std::shared_ptr<sfg::Box> gui_Box2_horizontal2;
    std::shared_ptr<sfg::Box> gui_Box2_horizontal;
    std::shared_ptr<sfg::ComboBox> gui_comboBox;
    std::shared_ptr<sfg::Button> gui_button_löschen;
    std::shared_ptr<sfg::Button> gui_button_alles_löschen;
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_x;
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_y;
+   std::shared_ptr<sfg::Entry> gui_Entry_Ladung;
+   std::shared_ptr<sfg::Button> gui_button_Set;
    int last_auswahl;
 
 
@@ -44,6 +49,6 @@ private:
    void ComboAuswahl();
    void AuswahlLöschen();
    void AllesLöschen();
-
+   void Set();
 };
 

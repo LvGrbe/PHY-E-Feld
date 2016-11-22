@@ -55,29 +55,42 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	//Window2
 	gui_Window2 = sfg::Window::Create();
 	gui_Box2_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
+	gui_Box2_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box2_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
 	gui_comboBox = sfg::ComboBox::Create();
 	gui_button_alles_löschen = sfg::Button::Create();
 	gui_button_löschen = sfg::Button::Create();
+	gui_button_Set = sfg::Button::Create();
+	gui_Entry_pos_x = sfg::Entry::Create();
+	gui_Entry_pos_y = sfg::Entry::Create();
+	gui_Entry_Ladung = sfg::Entry::Create();
 
 	//Init
 	gui_Window2->SetTitle("Auswahl Ladungen");
 	gui_Window2->SetPosition(sf::Vector2f(0,140));
 	gui_button_alles_löschen->SetLabel("Lösch alles");
 	gui_button_löschen->SetLabel("Lösche auswahl");
-
+	gui_button_Set->SetLabel("Set");
+	gui_Entry_Ladung->SetText("Ladung");
+	gui_Entry_pos_x->SetText("x:");
+	gui_Entry_pos_y->SetText("y:");
 	//Set Signale
 	gui_comboBox->GetSignal(sfg::ComboBox::OnSelect).Connect(std::bind(&GUI::ComboAuswahl,this));
 	gui_button_alles_löschen->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::AllesLöschen, this));
 	gui_button_löschen->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::AuswahlLöschen, this));
-
+	gui_button_Set->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set, this));
 	//Erstellen
 	gui_Window2->Add(GUI::gui_Box2_vertical);
 	gui_Box2_horizontal->Pack(GUI::gui_comboBox);
 	//gui_Box2_horizontal->Pack(GUI::gui_button_löschen); Fügt den Button  zum auswahl Löschen hinzu
 	gui_Box2_horizontal->Pack(GUI::gui_button_alles_löschen);
+	gui_Box2_horizontal2->Pack(gui_Entry_pos_x);
+	gui_Box2_horizontal2->Pack(gui_Entry_pos_y);
+	gui_Box2_horizontal2->Pack(gui_Entry_Ladung);
+	gui_Box2_horizontal2->Pack(gui_button_Set);
 	gui_Box2_vertical->Pack(GUI::gui_Box2_horizontal);
 	gui_Box2_vertical->Pack(sfg::Separator::Create());
+	gui_Box2_vertical->Pack(GUI::gui_Box2_horizontal2);
 	gui_Desktop->Add(GUI::gui_Window2);
 
 	//-----------------------------------------------------------
@@ -120,8 +133,19 @@ void GUI::ComboAuswahl()
 {
 	Simulation::Teilchen_vec[last_auswahl].col = sf::Color::Blue;
 	int auswahl = gui_comboBox->GetSelectedItem();
-	Simulation::Teilchen_vec[auswahl].col = sf::Color::Red;
 	last_auswahl = auswahl;
+	Simulation::Teilchen_vec[auswahl].col = sf::Color::Red;
+
+	std::stringstream ss;
+	ss << Simulation::Teilchen_vec[auswahl].pos.x;
+	gui_Entry_pos_x->SetText(ss.str());
+	ss.str("");
+	ss << Simulation::Teilchen_vec[auswahl].pos.y;
+	gui_Entry_pos_y->SetText(ss.str());
+	ss.str("");
+	ss << Simulation::Teilchen_vec[auswahl].Q;
+	gui_Entry_Ladung->SetText(ss.str());
+	ss.str("");
 }
 
 void GUI::AuswahlLöschen()
@@ -135,4 +159,22 @@ void GUI::AllesLöschen()
 {
 	gui_comboBox->Clear();
 	Simulation::Teilchen_vec.clear();
+
+	gui_Entry_Ladung->SetText("Ladung");
+	gui_Entry_pos_x->SetText("x:");
+	gui_Entry_pos_y->SetText("y:");
+}
+
+void GUI::Set()
+{
+	int auswahl = gui_comboBox->GetSelectedItem();
+	Simulation::Teilchen_vec[auswahl].pos.x = std::atoi(gui_Entry_pos_x->GetText().toAnsiString().c_str());
+	Simulation::Teilchen_vec[auswahl].pos.y = std::atoi(gui_Entry_pos_y->GetText().toAnsiString().c_str());
+	Simulation::Teilchen_vec[auswahl].Q     = std::atoi(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
+
+	Simulation::Teilchen_vec[auswahl].col = sf::Color::Blue;
+	gui_Entry_Ladung->SetText("Ladung");
+	gui_Entry_pos_x->SetText("x:");
+	gui_Entry_pos_y->SetText("y:");
+
 }
