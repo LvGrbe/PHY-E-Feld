@@ -149,6 +149,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darstellung_Feldlinien.cpp" />
+    <ClCompile Include="Darstellung_Fähnchen.cpp" />
+    <ClCompile Include="Elektrische_Feldstärke.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -157,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Darstellung_Feldlinien.h" />
+    <ClInclude Include="Darstellung_Fähnchen.h" />
+    <ClInclude Include="Elektrische_Feldstärke.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />

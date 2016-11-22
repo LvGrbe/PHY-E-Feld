@@ -11,7 +11,7 @@ public:
 
 	Physik_Value Q;
 	sf::Vector2i pos;
-
+	sf::Color col;
 	sf::CircleShape Erstelle_Kreis_Ladung(Physik_Value Radius);
 };
 
