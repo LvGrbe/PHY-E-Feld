@@ -4,6 +4,7 @@
 #include "Math_PH.h"
 #include "Punktladung.h"
 #include "Simulation.h"
+#include "InConvert.h"
 #include <SFML\Graphics.hpp>
 #include <SFGUI\SFGUI.hpp>
 #include <SFGUI\Widgets.hpp>
@@ -17,7 +18,6 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
-	int xmin, xmax, xscl;
 private:
 	
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;

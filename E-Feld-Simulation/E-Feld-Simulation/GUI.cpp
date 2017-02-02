@@ -219,9 +219,10 @@ void GUI::Set()
 
 void GUI::Set_E()
 {
-	xmax = std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str());
-	xmin = std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str());
-	xscl = std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str());
+	
+	InConvert::mXMAX = std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str());
+	InConvert::mXMIN = std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str());
+	InConvert::mSCAL = std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str());
 
 	
 
