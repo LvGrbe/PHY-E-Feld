@@ -94,6 +94,44 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Desktop->Add(GUI::gui_Window2);
 
 	//-----------------------------------------------------------
+
+	//Window 3
+	gui_Window3 = sfg::Window::Create();
+	gui_Box3_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
+	gui_Box3_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
+	gui_Box3_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
+	gui_button_löschen2 = sfg::Button::Create();
+	gui_button_Set2 = sfg::Button::Create();
+	gui_Entry_pos_x_min = sfg::Entry::Create();
+	gui_Entry_pos_x_max = sfg::Entry::Create();
+	gui_Entry_pos_x_scl = sfg::Entry::Create();
+
+	//Ini
+	gui_Window3->SetTitle("Einstellung Fenster");
+	gui_Window3->SetPosition(sf::Vector2f(0, 400));
+	gui_button_löschen2->SetLabel("Lösche Eingaben");
+	gui_button_Set2->SetLabel("Set");
+	gui_Entry_pos_x_min->SetText("x_min:");
+	gui_Entry_pos_x_max->SetText("x_max:");
+	gui_Entry_pos_x_scl->SetText("x_scl:");
+	
+	//Signal window3
+	gui_button_löschen2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Reset_E, this));
+	gui_button_Set2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set_E, this));
+
+	//Set Layout Einstellung
+	gui_Window3->Add(gui_Box3_vertical);
+	gui_Box3_vertical->Pack(gui_Box3_horizontal);
+	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
+	gui_Box3_horizontal->Pack(gui_Entry_pos_x_max);
+	gui_Box3_horizontal->Pack(gui_Entry_pos_x_min);
+	gui_Box3_horizontal->Pack(gui_Entry_pos_x_scl);
+	gui_Box3_vertical->SetSpacing(5.);
+	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
+	gui_Box3_horizontal2->Pack(gui_button_Set2);
+	gui_Box3_horizontal2->Pack(gui_button_löschen2);
+	gui_Desktop->Add(gui_Window3);
+	
 }
 
 GUI::~GUI()
@@ -177,4 +215,18 @@ void GUI::Set()
 	gui_Entry_pos_x->SetText("x:");
 	gui_Entry_pos_y->SetText("y:");
 
+}
+
+void GUI::Set_E()
+{
+	xmax = std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str());
+	xmin = std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str());
+	xscl = std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str());
+
+	
+
+}
+
+void GUI::Reset_E()
+{
 }

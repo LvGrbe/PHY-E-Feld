@@ -17,7 +17,9 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
+	int xmin, xmax, xscl;
 private:
+	
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;
 	//Window 1
    std::shared_ptr<sfg::Window>  gui_Window;
@@ -39,10 +41,22 @@ private:
    std::shared_ptr<sfg::Entry> gui_Entry_pos_y;
    std::shared_ptr<sfg::Entry> gui_Entry_Ladung;
    std::shared_ptr<sfg::Button> gui_button_Set;
+   //Window 3
+   std::shared_ptr<sfg::Window>  gui_Window3;
+   std::shared_ptr<sfg::Box> gui_Box3_vertical;
+   std::shared_ptr<sfg::Box> gui_Box3_horizontal2;
+   std::shared_ptr<sfg::Box> gui_Box3_horizontal;
+   std::shared_ptr<sfg::Button> gui_button_Set2;
+   std::shared_ptr<sfg::Button> gui_button_löschen2;
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_x_max;
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_x_min;
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_x_scl;
+
+
    int last_auswahl;
 
 
-   //Signal Funktion der GUI
+   //Signal Funktion der GUI W1 & w	2
    void AdjustmentChange();
    void Button_Erstelle_Click();
 
@@ -50,5 +64,11 @@ private:
    void AuswahlLöschen();
    void AllesLöschen();
    void Set();
+
+   //Signal Funktion der GUI w3
+   void Set_E();
+   void Reset_E();
+   void Get_Property_Window();
+ 
 };
 

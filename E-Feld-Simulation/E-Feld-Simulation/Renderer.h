@@ -28,7 +28,7 @@ private:
 	long y_scl;
 	long x_scl;
 	
-
+	
 	
 };
 

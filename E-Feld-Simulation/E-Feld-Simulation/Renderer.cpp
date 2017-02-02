@@ -22,7 +22,7 @@ int Renderer::run()
 	x_scl = 50.;
 	y_scl = 50.;
 	gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
-
+	
 	while (renderWindow->isOpen())
 	{
 

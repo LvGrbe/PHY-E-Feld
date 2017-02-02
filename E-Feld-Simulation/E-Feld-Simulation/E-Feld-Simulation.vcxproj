@@ -22,7 +22,7 @@
     <ProjectGuid>{B5DA55BA-9851-4B12-AD75-A92D3BBBFF03}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>EFeldSimulation</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -152,6 +152,7 @@
     <ClCompile Include="Darstellung_Fähnchen.cpp" />
     <ClCompile Include="Elektrische_Feldstärke.cpp" />
     <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="InConvert.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Simulation.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Darstellung_Fähnchen.h" />
     <ClInclude Include="Elektrische_Feldstärke.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="InConvert.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Punktladung.h" />
