@@ -153,7 +153,7 @@ void GUI::Button_Erstelle_Click()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{
 			auto mouspos = sf::Mouse::getPosition(*gui_RenderWindow);
-			Punktladung teil = Punktladung(gui_adjustment->GetValue(),mouspos);
+			Punktladung teil = Punktladung(gui_adjustment->GetValue(), InConvert::To_Sim(sf::Vector2f(mouspos)));
 			Simulation::Teilchen_vec.push_back(teil);
 			std::stringstream ss;
 			ss << (Simulation::Teilchen_vec.size() - 1);
