@@ -24,7 +24,7 @@ void InConvert::set(float xmax, float xmin, float scal, sf::Vector2u size)
 
 	Window_Size = size;
 
-	Pro_Fac = Get_X(1) - Get_X(0);
+	Pro_Fac = Get_X_On_Screen(1) - Get_X_On_Screen(0);
 
 
 	mYMAX = ((float)Window_Size.y / 2.f) / Pro_Fac;
