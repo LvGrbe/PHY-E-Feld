@@ -2,6 +2,7 @@
 #include "GUI.h"
 #include "Punktladung.h"
 #include "Simulation.h"
+#include "InConvert.h"
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include <SFGUI\SFGUI.hpp>

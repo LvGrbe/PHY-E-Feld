@@ -19,10 +19,9 @@ Renderer::~Renderer()
 // Window loop funktion
 int Renderer::run()
 {    
-	x_scl = 50.;
-	y_scl = 50.;
+
 	GUI::Window_Size = renderWindow->getSize();
-	gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
+	//Grid
 	
 	while (renderWindow->isOpen())
 	{
@@ -39,7 +38,7 @@ int Renderer::run()
 				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
 				renderWindow->setView(sf::View(visibleArea));
 
-				gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
+				//Grid gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
 
 			}
 			
@@ -52,10 +51,10 @@ int Renderer::run()
 
 		
 		//Zeichne Grid
-		for (int i = 0; i < gridvar.size(); i++)
+		/*for (int i = 0; i < gridvar.size(); i++)
 		{
 			renderWindow->draw(gridvar[i]);
-		}
+		}*/
 
 		//Zeichen Teilchen
 		sim.renderer_Teilchen();
@@ -75,63 +74,90 @@ int Renderer::run()
 std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, long y_max, long y_min,long y_scl)
 {
 	std::vector<sf::VertexArray> vec_vertex;
-	std::vector<sf::Vector2f> vec_Vec2f_hl;
-	std::vector<sf::Vector2f> vec_Vec2f_vr;
 
-	//Horizontale Linien
-	for (long i = x_min; i < x_max; i+=x_scl)
-	{
-		for (long j = y_min; j <= y_max; j++)
-		{
-		
-			auto point = sf::Vector2f(i, j);
-			vec_Vec2f_hl.push_back(point);
+	sf::VertexArray  vec_Vec2f_X_A(sf::Lines, 2);
+	sf::VertexArray  vec_Vec2f_Y_A(sf::Lines, 2);
+	std::vector<sf::Vector2f> vec_Vec2f_X_Scal_A;
+	std::vector<sf::Vector2f> vec_Vec2f_Y_Scal_A;
 
-			if (vec_Vec2f_hl.size() > 2 && j == y_max)
-			{
-				sf::VertexArray line(sf::Lines, 2);
-				line[0] = vec_Vec2f_hl[0];
-				line[1] = vec_Vec2f_hl[y_max];
-				line[0].color = sf::Color::Black;
-				line[1].color = sf::Color::Black;
+	    vec_Vec2f_X_A[0] = sf::Vector2f();
+	    vec_Vec2f_X_A[1] = sf::Vector2f();
+		vec_Vec2f_X_A[0].color = sf::Color::Black;
+		vec_Vec2f_X_A[1].color = sf::Color::Black;
 
-				vec_vertex.push_back(line);
-				vec_Vec2f_hl.clear();
-			}
+		vec_Vec2f_Y_A[0] = sf::Vector2f();
+		vec_Vec2f_Y_A[1] = sf::Vector2f();
+		vec_Vec2f_Y_A[0].color = sf::Color::Black;
+		vec_Vec2f_Y_A[1].color = sf::Color::Black;
 
-		}
+		vec_vertex.push_back(vec_Vec2f_Y_A);
+		vec_vertex.push_back(vec_Vec2f_X_A);
 
-	}
 
-	//Vetikale Linien
-	for (long i = y_min; i < y_max; i+=y_scl)
-	{
 
-		for (long j = x_min; j < x_max; j++)
-		{
 
-			auto point = sf::Vector2f(j, i);
-			vec_Vec2f_vr.push_back(point);
+	//std::vector<sf::Vector2f> vec_Vec2f_hl;
+	//std::vector<sf::Vector2f> vec_Vec2f_vr;
 
-			if (vec_Vec2f_vr.size() == x_max)
-			{
-				sf::VertexArray line(sf::Lines, 2);
-				line[0] = vec_Vec2f_vr[0];
-				line[1] = vec_Vec2f_vr[x_max-1];
-				line[0].color = sf::Color::Black;
-				line[1].color = sf::Color::Black;
+	////Horizontale Linien
+	//for (long i = x_min; i < x_max; i+=x_scl)
+	//{
+	//	for (long j = y_min; j <= y_max; j++)
+	//	{
+	//	
+	//		auto point = sf::Vector2f(i, j);
+	//		vec_Vec2f_hl.push_back(point);
 
-				vec_vertex.push_back(line);
-				vec_Vec2f_vr.clear();
-			}
+	//		if (vec_Vec2f_hl.size() > 2 && j == y_max)
+	//		{
+	//			sf::VertexArray line(sf::Lines, 2);
+	//			line[0] = vec_Vec2f_hl[0];
+	//			line[1] = vec_Vec2f_hl[y_max];
+	//			line[0].color = sf::Color::Black;
+	//			line[1].color = sf::Color::Black;
 
-		}
+	//			vec_vertex.push_back(line);
+	//			vec_Vec2f_hl.clear();
+	//		}
 
-	}
+	//	}
+
+	//}
+
+	////Vetikale Linien
+	//for (long i = y_min; i < y_max; i+=y_scl)
+	//{
+
+	//	for (long j = x_min; j < x_max; j++)
+	//	{
+
+	//		auto point = sf::Vector2f(j, i);
+	//		vec_Vec2f_vr.push_back(point);
+
+	//		if (vec_Vec2f_vr.size() == x_max)
+	//		{
+	//			sf::VertexArray line(sf::Lines, 2);
+	//			line[0] = vec_Vec2f_vr[0];
+	//			line[1] = vec_Vec2f_vr[x_max-1];
+	//			line[0].color = sf::Color::Black;
+	//			line[1].color = sf::Color::Black;
+
+	//			vec_vertex.push_back(line);
+	//			vec_Vec2f_vr.clear();
+	//		}
+
+	//	}
+
+	//}
+
+
+
+
+
 
 
 	return vec_vertex;
 
-
 }
+
 
