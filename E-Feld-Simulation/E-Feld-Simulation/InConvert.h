@@ -8,15 +8,21 @@ public:
 	~InConvert();
  
 private:
-	
+	static float mXMAX, mXMIN, mSCAL, mYMAX, mYMIN;
 	static sf::Vector2u Window_Size;
 public:
 	static void set(float xmax, float xmin, float scal, sf::Vector2u size);
 
-	static float mXMAX, mXMIN, mSCAL, mYMAX, mYMIN;
-	static sf::Vector2f To_Screen(sf::Vector2f pos);
-	static float Get_X(float x);
-	static float Get_Y(float y);
 	
+	static sf::Vector2f To_Screen(sf::Vector2f pos);
+	static sf::Vector2f To_Sim(sf::Vector2f pos);
+
+	// Zu Fenster Kordinaten
+	static float Get_X_On_Screen(float x);
+	static float Get_Y_On_Screen(float y);
+	
+	// Zu Simmulations Kordinaten
+	static float Get_X_On_Sim(float x);
+	static float Get_Y_On_Sim(float y);
 };
 
