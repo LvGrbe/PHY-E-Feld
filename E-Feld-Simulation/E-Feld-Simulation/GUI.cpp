@@ -3,7 +3,7 @@
 //Erstelle die Statischen Elemente
 sfg::SFGUI GUI::gui_sfgui = sfg::SFGUI();
 std::shared_ptr<sfg::Desktop> GUI::gui_Desktop = std::make_shared<sfg::Desktop>(sfg::Desktop());
-
+sf::Vector2u GUI::Window_Size;
 
 GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 {   
@@ -220,11 +220,8 @@ void GUI::Set()
 void GUI::Set_E()
 {
 	
-	InConvert::mXMAX = std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str());
-	InConvert::mXMIN = std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str());
-	InConvert::mSCAL = std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str());
+	InConvert::set(std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), Window_Size);
 
-	
 
 }
 

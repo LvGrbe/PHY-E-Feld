@@ -18,6 +18,7 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
+	static sf::Vector2u Window_Size;
 private:
 	
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;
@@ -68,7 +69,6 @@ private:
    //Signal Funktion der GUI w3
    void Set_E();
    void Reset_E();
-   void Get_Property_Window();
  
 };
 

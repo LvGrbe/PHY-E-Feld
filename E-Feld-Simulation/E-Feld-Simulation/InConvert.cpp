@@ -24,10 +24,10 @@ void InConvert::set(float xmax, float xmin, float scal, sf::Vector2u size)
 
 	Window_Size = size;
 
-	float Pro_Fac = Get_X(1) - Get_X(0);
+	float Pro_Fac_x = Get_X(1) - Get_X(0);
 
-	mYMAX = ((float)Window_Size.y / 2.f) / Pro_Fac;
-	mYMIN = ((float)Window_Size.y / 2.f) / Pro_Fac;
+	mYMAX = ((float)Window_Size.y / 2.f) / Pro_Fac_x;
+	mYMIN = ((float)Window_Size.y / 2.f) / Pro_Fac_x;
 	mYMIN *= -1;
 }
 
