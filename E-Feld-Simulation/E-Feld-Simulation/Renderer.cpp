@@ -22,7 +22,8 @@ int Renderer::run()
 	long x_scl = 50.;
 	long y_scl = 50.;
 
-	GUI::Window_Size = renderWindow->getSize();
+	InConvert::set(renderWindow->getSize());
+	
 	//Grid
 	gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
 	
@@ -41,7 +42,8 @@ int Renderer::run()
 				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
 				renderWindow->setView(sf::View(visibleArea));
 
-				 gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
+				InConvert::set(renderWindow->getSize());
+				gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
 
 			}
 			
@@ -83,8 +85,12 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 	std::vector<sf::Vector2f> vec_Vec2f_X_Scal_A;
 	std::vector<sf::Vector2f> vec_Vec2f_Y_Scal_A;
 
+	std::cout << InConvert::Get_X_On_Screen(InConvert::mXMAX) << std::endl;
+	std::cout << InConvert::Get_X_On_Screen(InConvert::mXMIN) << std::endl;
+
+
 	    vec_Vec2f_X_A[0] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMAX),InConvert::Get_Y_On_Screen(0));
-	    vec_Vec2f_X_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMIN), InConvert::Get_Y_On_Screen(0));
+	    vec_Vec2f_X_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMIN),InConvert::Get_Y_On_Screen(0));
 		vec_Vec2f_X_A[0].color = sf::Color::Black;
 		vec_Vec2f_X_A[1].color = sf::Color::Black;
 

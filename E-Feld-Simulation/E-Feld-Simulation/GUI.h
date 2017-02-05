@@ -18,7 +18,6 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
-	static sf::Vector2u Window_Size;
 private:
 	
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;

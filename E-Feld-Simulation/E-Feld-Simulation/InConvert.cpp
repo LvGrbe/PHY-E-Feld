@@ -17,14 +17,12 @@ InConvert::~InConvert()
 {
 }
 
-void InConvert::set(float xmax, float xmin, float scalx, float scaly, sf::Vector2u size)
+void InConvert::set(float xmax, float xmin, float scalx, float scaly)
 {
 	mXMAX = xmax;
 	mXMIN = xmin;
 	mSCALX = scaly;
 	mSCALY = scalx;
-
-	Window_Size = size;
 
 	Pro_Fac = Get_X_On_Screen(1) - Get_X_On_Screen(0);
 
@@ -33,6 +31,22 @@ void InConvert::set(float xmax, float xmin, float scalx, float scaly, sf::Vector
 	mYMIN = ((float)Window_Size.y / 2.f) / Pro_Fac;
 	mYMIN *= -1;
 }
+
+void InConvert::set(sf::Vector2u size)
+{
+	Window_Size = size;
+
+	Pro_Fac = Get_X_On_Screen(1) - Get_X_On_Screen(0);
+
+
+	mYMAX = ((float)Window_Size.y / 2.f) / Pro_Fac;
+	mYMIN = ((float)Window_Size.y / 2.f) / Pro_Fac;
+	mYMIN *= -1;
+
+}
+
+
+
 
 sf::Vector2f InConvert::To_Screen(sf::Vector2f pos)
 {
