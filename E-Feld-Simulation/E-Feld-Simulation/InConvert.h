@@ -11,9 +11,9 @@ private:
 	
 	static sf::Vector2u Window_Size;
 public:
-	static void set(float xmax, float xmin, float scal, sf::Vector2u size);
+	static void set(float xmax, float xmin, float scalx, float scaly, sf::Vector2u size);
 
-	static float mXMAX, mXMIN, mSCAL, mYMAX, mYMIN,Pro_Fac;
+	static float mXMAX, mXMIN, mSCALX,mSCALY, mYMAX, mYMIN,Pro_Fac;
 	static sf::Vector2f To_Screen(sf::Vector2f pos);
 	static sf::Vector2f To_Sim(sf::Vector2f pos);
 

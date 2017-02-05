@@ -105,7 +105,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Entry_pos_x_min = sfg::Entry::Create();
 	gui_Entry_pos_x_max = sfg::Entry::Create();
 	gui_Entry_pos_x_scl = sfg::Entry::Create();
-
+	gui_Entry_pos_y_scl = sfg::Entry::Create();
 	//Ini
 	gui_Window3->SetTitle("Einstellung Fenster");
 	gui_Window3->SetPosition(sf::Vector2f(0, 400));
@@ -114,7 +114,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Entry_pos_x_min->SetText("x_min:");
 	gui_Entry_pos_x_max->SetText("x_max:");
 	gui_Entry_pos_x_scl->SetText("x_scl:");
-	
+	gui_Entry_pos_y_scl->SetText("x_scl:");
 	//Signal window3
 	gui_button_löschen2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Reset_E, this));
 	gui_button_Set2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set_E, this));
@@ -220,7 +220,7 @@ void GUI::Set()
 void GUI::Set_E()
 {
 	
-	InConvert::set(std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), Window_Size);
+	InConvert::set(std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_y_scl->GetText().toAnsiString().c_str()), Window_Size);
 
 
 }

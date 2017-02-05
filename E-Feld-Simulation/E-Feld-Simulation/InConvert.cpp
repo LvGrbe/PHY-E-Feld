@@ -2,7 +2,8 @@
 
 float InConvert::mXMAX;
 float InConvert::mXMIN;
-float InConvert::mSCAL;
+float InConvert::mSCALX;
+float InConvert::mSCALY;
 float InConvert::mYMAX;
 float InConvert::mYMIN;
 float InConvert::Pro_Fac;
@@ -16,11 +17,12 @@ InConvert::~InConvert()
 {
 }
 
-void InConvert::set(float xmax, float xmin, float scal, sf::Vector2u size)
+void InConvert::set(float xmax, float xmin, float scalx, float scaly, sf::Vector2u size)
 {
 	mXMAX = xmax;
 	mXMIN = xmin;
-	mSCAL = scal;
+	mSCALX = scaly;
+	mSCALY = scalx;
 
 	Window_Size = size;
 

@@ -52,7 +52,7 @@ private:
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_max;
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_min;
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_scl;
-
+   std::shared_ptr<sfg::Entry> gui_Entry_pos_y_scl;
 
    int last_auswahl;
 
