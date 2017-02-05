@@ -85,17 +85,14 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 	std::vector<sf::Vector2f> vec_Vec2f_X_Scal_A;
 	std::vector<sf::Vector2f> vec_Vec2f_Y_Scal_A;
 
-	std::cout << InConvert::Get_X_On_Screen(InConvert::mXMAX) << std::endl;
-	std::cout << InConvert::Get_X_On_Screen(InConvert::mXMIN) << std::endl;
-
-
+	
 	    vec_Vec2f_X_A[0] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMAX),InConvert::Get_Y_On_Screen(0));
 	    vec_Vec2f_X_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMIN),InConvert::Get_Y_On_Screen(0));
 		vec_Vec2f_X_A[0].color = sf::Color::Black;
 		vec_Vec2f_X_A[1].color = sf::Color::Black;
 
-		vec_Vec2f_Y_A[0] = sf::Vector2f();
-		vec_Vec2f_Y_A[1] = sf::Vector2f();
+		vec_Vec2f_Y_A[0] = sf::Vector2f(InConvert::Get_X_On_Screen(0), InConvert::Get_Y_On_Screen(InConvert::mYMAX));
+		vec_Vec2f_Y_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(0), InConvert::Get_Y_On_Screen(InConvert::mYMIN));
 		vec_Vec2f_Y_A[0].color = sf::Color::Black;
 		vec_Vec2f_Y_A[1].color = sf::Color::Black;
 

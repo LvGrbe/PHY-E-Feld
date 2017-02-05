@@ -7,7 +7,7 @@ float InConvert::mSCALY = 1.f;
 float InConvert::mYMAX = 5.f;
 float InConvert::mYMIN = 5.f;
 float InConvert::Pro_Fac = 1.f;
-sf::Vector2u InConvert::Window_Size = sf::Vector2u(500, 500);
+sf::Vector2u InConvert::Window_Size;
 
 InConvert::InConvert()
 {
