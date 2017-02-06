@@ -25,7 +25,7 @@ int Renderer::run()
 	InConvert::set(renderWindow->getSize());
 	
 	//Grid
-	gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
+	gridvar = grid();
 	
 	while (renderWindow->isOpen())
 	{
@@ -43,7 +43,7 @@ int Renderer::run()
 				renderWindow->setView(sf::View(visibleArea));
 
 				InConvert::set(renderWindow->getSize());
-				gridvar = grid(renderWindow->getSize().x, 0., x_scl, renderWindow->getSize().y, 0., y_scl);
+				gridvar = grid();
 
 			}
 			
@@ -76,7 +76,7 @@ int Renderer::run()
 
 
 
-std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, long y_max, long y_min,long y_scl)
+std::vector<sf::VertexArray> Renderer::grid()
 {
 	std::vector<sf::VertexArray> vec_vertex;
 
@@ -99,66 +99,32 @@ std::vector<sf::VertexArray> Renderer::grid(long x_max,long x_min,long x_scl, lo
 		vec_vertex.push_back(vec_Vec2f_Y_A);
 		vec_vertex.push_back(vec_Vec2f_X_A);
 
+		for (int i = InConvert::mXMIN; i < InConvert::mXMAX; i += InConvert::mSCALX)
+		{
+
+			sf::VertexArray line(sf::Lines, 2);
+			line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(0.2));
+			line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(-0.2));
+			line[0].color = sf::Color::Black;
+			line[1].color = sf::Color::Black;
+
+			vec_vertex.push_back(line);
+
+		}
+
+		for (int i = InConvert::mYMIN; i < InConvert::mYMAX; i += InConvert::mSCALY)
+		{
+
+			sf::VertexArray line(sf::Lines, 2);
+			line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(-0.2), InConvert::Get_Y_On_Screen(i));
+			line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(0.2), InConvert::Get_Y_On_Screen(i));
+			line[0].color = sf::Color::Black;
+			line[1].color = sf::Color::Black;
+
+			vec_vertex.push_back(line);
 
 
-	//std::vector<sf::Vector2f> vec_Vec2f_hl;
-	//std::vector<sf::Vector2f> vec_Vec2f_vr;
-
-	////Horizontale Linien
-	//for (long i = x_min; i < x_max; i+=x_scl)
-	//{
-	//	for (long j = y_min; j <= y_max; j++)
-	//	{
-	//	
-	//		auto point = sf::Vector2f(i, j);
-	//		vec_Vec2f_hl.push_back(point);
-
-	//		if (vec_Vec2f_hl.size() > 2 && j == y_max)
-	//		{
-	//			sf::VertexArray line(sf::Lines, 2);
-	//			line[0] = vec_Vec2f_hl[0];
-	//			line[1] = vec_Vec2f_hl[y_max];
-	//			line[0].color = sf::Color::Black;
-	//			line[1].color = sf::Color::Black;
-
-	//			vec_vertex.push_back(line);
-	//			vec_Vec2f_hl.clear();
-	//		}
-
-	//	}
-
-	//}
-
-	////Vetikale Linien
-	//for (long i = y_min; i < y_max; i+=y_scl)
-	//{
-
-	//	for (long j = x_min; j < x_max; j++)
-	//	{
-
-	//		auto point = sf::Vector2f(j, i);
-	//		vec_Vec2f_vr.push_back(point);
-
-	//		if (vec_Vec2f_vr.size() == x_max)
-	//		{
-	//			sf::VertexArray line(sf::Lines, 2);
-	//			line[0] = vec_Vec2f_vr[0];
-	//			line[1] = vec_Vec2f_vr[x_max-1];
-	//			line[0].color = sf::Color::Black;
-	//			line[1].color = sf::Color::Black;
-
-	//			vec_vertex.push_back(line);
-	//			vec_Vec2f_vr.clear();
-	//		}
-
-	//	}
-
-	//}
-
-
-
-
-
+		}
 
 
 	return vec_vertex;
