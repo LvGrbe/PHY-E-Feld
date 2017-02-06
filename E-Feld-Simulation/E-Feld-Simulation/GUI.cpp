@@ -137,6 +137,19 @@ GUI::~GUI()
 {
 }
 
+
+bool GUI::Point_On_Window(sf::Vector2i pos)
+{
+	if (gui_Window->GetAllocation().contains(sf::Vector2f(pos)))
+		return true;
+	else if (gui_Window2->GetAllocation().contains(sf::Vector2f(pos)))
+		return true;
+	else if (gui_Window3->GetAllocation().contains(sf::Vector2f(pos)))
+		return true;
+	else
+		return false;
+}
+
 //Reaktion auf veränderung der Range
 void GUI::AdjustmentChange()
 {
@@ -149,7 +162,7 @@ void GUI::Button_Erstelle_Click()
 {
 	while (true)
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !Point_On_Window(sf::Mouse::getPosition(*gui_RenderWindow)))
 		{
 			auto mouspos = sf::Mouse::getPosition(*gui_RenderWindow);
 			Punktladung teil = Punktladung(gui_adjustment->GetValue(), InConvert::To_Sim(sf::Vector2f(mouspos)));
@@ -159,7 +172,9 @@ void GUI::Button_Erstelle_Click()
 			std::string str = "Ladung: " + ss.str();
 			gui_comboBox->AppendItem(str);
 			break;
- 		}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			break;
 	}
 	
 }
