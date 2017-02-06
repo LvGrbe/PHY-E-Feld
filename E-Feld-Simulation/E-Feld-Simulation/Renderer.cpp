@@ -5,8 +5,7 @@ std::shared_ptr<sf::RenderWindow> Renderer::renderWindow(new sf::RenderWindow(sf
 GUI Renderer::gui = GUI(Renderer::renderWindow);
 
 Renderer::Renderer()
-{
-	
+{	
 	sim = Simulation(Renderer::renderWindow);
 
 }
