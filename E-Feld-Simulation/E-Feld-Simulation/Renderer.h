@@ -24,7 +24,7 @@ private:
 	static  GUI gui;
 	Simulation sim;
 	//Grid
-	std::vector<sf::VertexArray> grid(long x_max, long x_min, long x_scl, long y_max, long y_min, long y_scl);
+	std::vector<sf::VertexArray> grid();
 	std::vector<sf::VertexArray> gridvar;
 	long y_scl;
 	long x_scl;
