@@ -98,6 +98,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Window3 = sfg::Window::Create();
 	gui_Box3_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box3_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
+	//gui_Box3_horizontal3 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box3_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
 	gui_button_löschen2 = sfg::Button::Create();
 	gui_button_Set2 = sfg::Button::Create();
@@ -113,7 +114,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Entry_pos_x_min->SetText("x_min:");
 	gui_Entry_pos_x_max->SetText("x_max:");
 	gui_Entry_pos_x_scl->SetText("x_scl:");
-	gui_Entry_pos_y_scl->SetText("x_scl:");
+	gui_Entry_pos_y_scl->SetText("y_scl:");
 	//Signal window3
 	gui_button_löschen2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Reset_E, this));
 	gui_button_Set2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set_E, this));
@@ -125,12 +126,17 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_max);
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_min);
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_scl);
+	gui_Box3_horizontal->Pack(gui_Entry_pos_y_scl);
 	gui_Box3_vertical->SetSpacing(5.);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
 	gui_Box3_horizontal2->Pack(gui_button_Set2);
 	gui_Box3_horizontal2->Pack(gui_button_löschen2);
 	gui_Desktop->Add(gui_Window3);
 	
+}
+
+GUI::GUI()
+{
 }
 
 GUI::~GUI()
@@ -219,11 +225,94 @@ void GUI::Set()
 void GUI::Set_E()
 {
 	
-	InConvert::set(std::atoi(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), std::atoi(gui_Entry_pos_y_scl->GetText().toAnsiString().c_str()));
+	InConvert::set(std::stof(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_y_scl->GetText().toAnsiString().c_str()));
 
+	gridvar = grid();
 
 }
 
 void GUI::Reset_E()
 {
 }
+
+
+std::vector<sf::VertexArray> GUI::grid()
+{
+	std::vector<sf::VertexArray> vec_vertex;
+
+	sf::VertexArray  vec_Vec2f_X_A(sf::Lines, 2);
+	sf::VertexArray  vec_Vec2f_Y_A(sf::Lines, 2);
+	std::vector<sf::Vector2f> vec_Vec2f_X_Scal_A;
+	std::vector<sf::Vector2f> vec_Vec2f_Y_Scal_A;
+
+
+	vec_Vec2f_X_A[0] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMAX), InConvert::Get_Y_On_Screen(0));
+	vec_Vec2f_X_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(InConvert::mXMIN), InConvert::Get_Y_On_Screen(0));
+	vec_Vec2f_X_A[0].color = sf::Color::Black;
+	vec_Vec2f_X_A[1].color = sf::Color::Black;
+
+	vec_Vec2f_Y_A[0] = sf::Vector2f(InConvert::Get_X_On_Screen(0), InConvert::Get_Y_On_Screen(InConvert::mYMAX));
+	vec_Vec2f_Y_A[1] = sf::Vector2f(InConvert::Get_X_On_Screen(0), InConvert::Get_Y_On_Screen(InConvert::mYMIN));
+	vec_Vec2f_Y_A[0].color = sf::Color::Black;
+	vec_Vec2f_Y_A[1].color = sf::Color::Black;
+
+	vec_vertex.push_back(vec_Vec2f_Y_A);
+	vec_vertex.push_back(vec_Vec2f_X_A);
+
+	for (float i = 0; i < InConvert::mXMAX; i += InConvert::mSCALX)
+	{
+
+		sf::VertexArray line(sf::Lines, 2);
+		line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(0) + 8);
+		line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(0) - 8);
+		line[0].color = sf::Color::Black;
+		line[1].color = sf::Color::Black;
+
+		vec_vertex.push_back(line);
+
+	}
+
+	for (float i = 0; i > InConvert::mXMIN; i -= InConvert::mSCALX)
+	{
+
+		sf::VertexArray line(sf::Lines, 2);
+		line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(0) + 8);
+		line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(i), InConvert::Get_Y_On_Screen(0) - 8);
+		line[0].color = sf::Color::Black;
+		line[1].color = sf::Color::Black;
+
+		vec_vertex.push_back(line);
+
+	}
+
+	for (float i = 0; i < InConvert::mYMAX; i += InConvert::mSCALY)
+	{
+
+		sf::VertexArray line(sf::Lines, 2);
+		line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(0) - 8, InConvert::Get_Y_On_Screen(i));
+		line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(0) + 8, InConvert::Get_Y_On_Screen(i));
+		line[0].color = sf::Color::Black;
+		line[1].color = sf::Color::Black;
+
+		vec_vertex.push_back(line);
+
+	}
+
+	for (float i = 0; i > InConvert::mYMIN; i -= InConvert::mSCALY)
+	{
+
+		sf::VertexArray line(sf::Lines, 2);
+		line[0] = sf::Vector2f(InConvert::Get_X_On_Screen(0) - 8, InConvert::Get_Y_On_Screen(i));
+		line[1] = sf::Vector2f(InConvert::Get_X_On_Screen(0) + 8, InConvert::Get_Y_On_Screen(i));
+		line[0].color = sf::Color::Black;
+		line[1].color = sf::Color::Black;
+
+		vec_vertex.push_back(line);
+
+
+	}
+	return vec_vertex;
+
+}
+
+

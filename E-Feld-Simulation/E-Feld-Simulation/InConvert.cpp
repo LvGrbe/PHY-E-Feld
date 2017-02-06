@@ -21,8 +21,8 @@ void InConvert::set(float xmax, float xmin, float scalx, float scaly)
 {
 	mXMAX = xmax;
 	mXMIN = xmin;
-	mSCALX = scaly;
-	mSCALY = scalx;
+	mSCALX = scalx;
+	mSCALY = scaly;
 
 	Pro_Fac = Get_X_On_Screen(1) - Get_X_On_Screen(0);
 

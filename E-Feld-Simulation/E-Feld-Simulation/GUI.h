@@ -14,10 +14,15 @@ class GUI
 {
 public:
 	GUI(std::shared_ptr<sf::RenderWindow> Window);
+	GUI();
 	~GUI();
+
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
+	//Grid
+	std::vector<sf::VertexArray> gridvar;
+	std::vector<sf::VertexArray> grid();
 private:
 	
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;
@@ -46,6 +51,7 @@ private:
    std::shared_ptr<sfg::Box> gui_Box3_vertical;
    std::shared_ptr<sfg::Box> gui_Box3_horizontal2;
    std::shared_ptr<sfg::Box> gui_Box3_horizontal;
+   //std::shared_ptr<sfg::Box> gui_Box3_horizontal3;
    std::shared_ptr<sfg::Button> gui_button_Set2;
    std::shared_ptr<sfg::Button> gui_button_löschen2;
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_max;
@@ -69,5 +75,6 @@ private:
    void Set_E();
    void Reset_E();
  
+   
 };
 
