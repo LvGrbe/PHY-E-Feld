@@ -61,7 +61,8 @@ private:
 
    int last_auswahl;
 
-
+   bool Point_On_Window(sf::Vector2i pos);
+    
    //Signal Funktion der GUI W1 & w	2
    void AdjustmentChange();
    void Button_Erstelle_Click();
