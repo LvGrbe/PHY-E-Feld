@@ -25,7 +25,7 @@ private:
 	
 	Simulation sim;
 
-
+	Darstellung_Feldlinien Feldlinien;
 	
 	
 	
