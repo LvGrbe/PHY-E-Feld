@@ -5,7 +5,7 @@ std::shared_ptr<sf::RenderWindow> Renderer::renderWindow(new sf::RenderWindow(sf
 Simulation Renderer::sim = Simulation(Renderer::renderWindow);
 GUI Renderer::gui = GUI(Renderer::renderWindow, Renderer::sim);
 
-Renderer::Renderer()
+Renderer::Renderer() : Feldlinien(Renderer::renderWindow)
 {	
 
 }
@@ -48,7 +48,7 @@ int Renderer::run()
 		}
 
 		gui.gui_Desktop->Update(1.0f);
-
+		Feldlinien.Update();
 
 		renderWindow->clear(sf::Color::White);
 
@@ -62,7 +62,10 @@ int Renderer::run()
 		//Zeichen Teilchen
 		sim.renderer_Teilchen();
 		
+		Feldlinien.Draw();
+
 		gui.gui_sfgui.Display(*renderWindow);
+
 
 		renderWindow->display();
 

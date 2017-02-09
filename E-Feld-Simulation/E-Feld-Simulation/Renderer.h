@@ -23,7 +23,7 @@ public:
     static GUI gui;	
 	static Simulation sim;
 
-
+	Darstellung_Feldlinien Feldlinien;
 	
 	
 	
