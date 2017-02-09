@@ -4,10 +4,11 @@
 sfg::SFGUI GUI::gui_sfgui = sfg::SFGUI();
 std::shared_ptr<sfg::Desktop> GUI::gui_Desktop = std::make_shared<sfg::Desktop>(sfg::Desktop());
 
-GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
+GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 {   
 	last_auswahl = 0;
 	gui_RenderWindow = Window;
+	sim = sim;
 
 //---------------------------------------------------------------------------
 	//Window
@@ -132,7 +133,25 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window)
 	gui_Box3_horizontal2->Pack(gui_button_Set2);
 	gui_Box3_horizontal2->Pack(gui_button_löschen2);
 	gui_Desktop->Add(gui_Window3);
-	
+    
+	//
+	//Window 4
+	gui_Window4 = sfg::Window::Create();
+	gui_Box4 = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
+	gui_button_d_Fähnchen = sfg::Button::Create();
+	gui_button_d_Linien = sfg::Button::Create();
+	gui_Window4->SetTitle("Darstellung");
+	gui_Window4->SetPosition(sf::Vector2f(200, 400));
+	gui_button_d_Fähnchen->SetLabel("Fähnchen");
+	gui_button_d_Linien->SetLabel("Linien");
+	//Signals
+	gui_button_d_Fähnchen->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Set, this));
+	gui_button_d_Linien->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Linien, this));
+
+	gui_Window4->Add(gui_Box4);
+	gui_Box4->Pack(gui_button_d_Fähnchen);
+	gui_Box4->Pack(gui_button_d_Linien);
+	gui_Desktop->Add(gui_Window4);
 }
 
 GUI::GUI()
@@ -247,6 +266,15 @@ void GUI::Set_E()
 }
 
 void GUI::Reset_E()
+{
+}
+
+void GUI::Darstellung_Feld_Set()
+{
+	sim.Draw_Fähnchen();
+}
+
+void GUI::Darstellung_Feld_Linien()
 {
 }
 

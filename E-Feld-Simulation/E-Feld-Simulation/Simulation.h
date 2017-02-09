@@ -4,7 +4,6 @@
 #include <memory>
 #include "Math_PH.h"
 #include "Punktladung.h"
-#include "Elektrische_Feldstärke.h"
 #include "Darstellung_Feldlinien.h"
 #include "Darstellung_Fähnchen.h"
 
@@ -15,9 +14,10 @@ public:
 	Simulation(std::shared_ptr<sf::RenderWindow> Window);
 	~Simulation();
 
+	Darstellung_Fähnchen df;
 	static std::vector<Punktladung> Teilchen_vec;
-	static std::vector<std::vector<Elektrische_Feldstärke>> EFeld_vec;
 	void renderer_Teilchen();
+	void Draw_Fähnchen();
 
 	long y_scl;
 	long x_scl;

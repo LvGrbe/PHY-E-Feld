@@ -20,10 +20,8 @@ public:
 	// Window loop funktion
 	int run();
 	//GUI Inisalisieren
-    static GUI gui;
-private:
-	
-	Simulation sim;
+    static GUI gui;	
+	static Simulation sim;
 
 
 	

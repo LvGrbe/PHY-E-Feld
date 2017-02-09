@@ -2,11 +2,11 @@
 
 //Dekelration des Smart_ptr zum Fenster
 std::shared_ptr<sf::RenderWindow> Renderer::renderWindow(new sf::RenderWindow(sf::VideoMode(800, 600), "E-Feld-Simulation"));
-GUI Renderer::gui = GUI(Renderer::renderWindow);
+Simulation Renderer::sim = Simulation(Renderer::renderWindow);
+GUI Renderer::gui = GUI(Renderer::renderWindow, Renderer::sim);
 
 Renderer::Renderer()
 {	
-	sim = Simulation(Renderer::renderWindow);
 
 }
 

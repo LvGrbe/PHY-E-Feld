@@ -2,7 +2,7 @@
 
 
 
-Punktladung::Punktladung(Physik_Value Ladung,sf::Vector2f position)
+Punktladung::Punktladung(double Ladung,sf::Vector2f position)
 {
 	Q = Ladung;
 	pos = position;
@@ -14,7 +14,7 @@ Punktladung::~Punktladung()
 {
 }
 
-sf::CircleShape Punktladung::Erstelle_Kreis_Ladung(Physik_Value Radius)
+sf::CircleShape Punktladung::Erstelle_Kreis_Ladung(double Radius)
 {
 	sf::CircleShape Kreis = sf::CircleShape();
 	Kreis.setRadius(Radius);

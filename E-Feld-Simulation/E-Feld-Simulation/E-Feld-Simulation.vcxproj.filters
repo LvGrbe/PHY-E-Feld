@@ -36,13 +36,7 @@
     <ClCompile Include="Darstellung_Fähnchen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Elektrische_Feldstärke.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="InConvert.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Vektor2.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,13 +59,7 @@
     <ClInclude Include="Darstellung_Fähnchen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Elektrische_Feldstärke.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="InConvert.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Vektor2.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
