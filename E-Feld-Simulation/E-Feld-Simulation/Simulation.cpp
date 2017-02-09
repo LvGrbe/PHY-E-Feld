@@ -4,13 +4,19 @@ std::vector<Punktladung> Simulation::Teilchen_vec = std::vector<Punktladung>();
 
 Simulation::Simulation()
 {
-	
+	df = Darstellung_Fähnchen(&Teilchen_vec);
+	if (!font.loadFromFile("Sanchezregular.otf"))
+	{
+	}
 }
 
 Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 {
 	sim_RenderWindow = Window;
 	df =  Darstellung_Fähnchen(&Teilchen_vec);
+	if (!font.loadFromFile("Sanchezregular.otf"))
+	{
+	}
 }
 
 

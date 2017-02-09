@@ -62,6 +62,8 @@ int Renderer::run()
 		//Zeichen Teilchen
 		sim.renderer_Teilchen();
 		
+		
+
 		Feldlinien.Draw();
 
 		gui.gui_sfgui.Display(*renderWindow);

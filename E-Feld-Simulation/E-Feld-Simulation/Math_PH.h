@@ -4,7 +4,7 @@
 
 #define e (1.6022f * (pow(10, -19)))
 #define Elektrische_Feldkonstante (8.85418782 * (pow(10, -12)))
-#define PI 3.141592653589
+#define PI 3.141592654
 
 typedef long double Physik_Value;
 

@@ -19,8 +19,7 @@ public:
 	void renderer_Teilchen();
 	void Draw_Fähnchen();
 
-	long y_scl;
-	long x_scl;
+	sf::Font font;
 private:
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 
