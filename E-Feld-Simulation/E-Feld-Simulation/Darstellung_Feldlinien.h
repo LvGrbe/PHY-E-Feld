@@ -3,15 +3,16 @@
 #include <memory>
 #include "Math_PH.h"
 #include "Punktladung.h"
-#include "Simulation.h"
+
 
 class Darstellung_Feldlinien
 {
 public:
 	Darstellung_Feldlinien();
-	Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window);
+	Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window, std::vector<Punktladung>* teilchen);
 	~Darstellung_Feldlinien();
 
+	std::vector<Punktladung>* Teilchen_vec;
 	void Update();
 	void Draw();
 

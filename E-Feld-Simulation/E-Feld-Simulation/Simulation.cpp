@@ -6,8 +6,8 @@ Simulation::Simulation()
 {
 	Draw_Feldlinien_var = false;
 	Draw_Fähnchen_var = false;
-	df = Darstellung_Fähnchen(&Teilchen_vec);
-	Feldlinien = Darstellung_Feldlinien(sim_RenderWindow);
+	df = Darstellung_Fähnchen(sim_RenderWindow,&Teilchen_vec);
+	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
 	if (!font.loadFromFile("Sanchezregular.otf"))
 	{
 	}
@@ -18,8 +18,8 @@ Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 	Draw_Feldlinien_var = false;
 	Draw_Fähnchen_var = false;
 	sim_RenderWindow = Window;
-	Feldlinien = Darstellung_Feldlinien(sim_RenderWindow);
-	df =  Darstellung_Fähnchen(&Teilchen_vec);
+	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
+	df =  Darstellung_Fähnchen(sim_RenderWindow,&Teilchen_vec);
 	if (!font.loadFromFile("Sanchezregular.otf"))
 	{
 	}
@@ -51,8 +51,8 @@ void Simulation::Draw_Fähnchen()
 
 void Simulation::Draw_Feldlinin()
 {
-	Feldlinien.Update();
+	dfl.Update();
 
-	Feldlinien.Draw();
+	dfl.Draw();
 }
 

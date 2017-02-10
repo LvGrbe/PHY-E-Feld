@@ -13,7 +13,7 @@
 class GUI
 {
 public:
-	GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation *sim);
+	GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim);
 	GUI();
 	~GUI();
 

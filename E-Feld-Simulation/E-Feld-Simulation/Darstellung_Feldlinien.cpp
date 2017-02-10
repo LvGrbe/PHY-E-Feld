@@ -6,10 +6,9 @@ Darstellung_Feldlinien::Darstellung_Feldlinien()
 {
 }
 
-Darstellung_Feldlinien::Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window)
+Darstellung_Feldlinien::Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window, std::vector<Punktladung>* teilchen)
+	: dFl_RenderWindow(Window), Teilchen_vec(teilchen)
 {
-	dFl_RenderWindow = Window;
-
 }
 
 
@@ -22,19 +21,19 @@ void Darstellung_Feldlinien::Update()
 
 	Lines.clear();
 
-	for (int i = 0; i != Simulation::Teilchen_vec.size(); i++)
+	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
 		for (int n = 0; n != 8; n++)
 		{
 			int Winkel = 360 / 8 * n;
-			sf::Vector2f Start_pos = Simulation::Teilchen_vec[i].pos + sf::Vector2f(std::cos(Winkel * PI / 180), std::sin(Winkel * PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
+			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * PI / 180), std::sin(Winkel * PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
 
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
 			Lines[i + n].append(sf::Vertex(InConvert::To_Screen(Start_pos), sf::Color::Black));
 
-			for (int s = 0; s != 100 && Simulation::Teilchen_vec[i].Q != 0 ; s++)
+			for (int s = 0; s != 100 && (*Teilchen_vec)[i].Q != 0 ; s++)
 			{
-				auto t = Next_Pos(Start_pos, Simulation::Teilchen_vec[i].Q > 0);
+				auto t = Next_Pos(Start_pos, (*Teilchen_vec)[i].Q > 0);
 				Lines[i + n].append(sf::Vertex(InConvert::To_Screen(t), sf::Color::Black));
 				Start_pos = t;
 			}
@@ -59,9 +58,9 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 {
 	sf::Vector2f Kraft_Vec = sf::Vector2f(0,0);
 	
-	for (int i = 0; i != Simulation::Teilchen_vec.size(); i++)
+	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		sf::Vector2f Richtung = Simulation::Teilchen_vec[i].pos - pos;
+		sf::Vector2f Richtung = (*Teilchen_vec)[i].pos - pos;
 		
 		float abstand = (float)(std::sqrt(std::pow(Richtung.x, 2) + std::pow(Richtung.y, 2)));
 
@@ -71,7 +70,7 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 			Richtung *= -1.f;
 
 		// Voleufig
-		float Kraft = 8987551785 * (1 * Simulation::Teilchen_vec[i].Q) / std::pow(abstand, 2);
+		float Kraft = 8987551785 * (1 * (*Teilchen_vec)[i].Q) / std::pow(abstand, 2);
 
 		Kraft_Vec += Richtung * Kraft;
 	}
