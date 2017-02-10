@@ -13,7 +13,7 @@
 class GUI
 {
 public:
-	GUI(std::shared_ptr<sf::RenderWindow> Window);
+	GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim);
 	GUI();
 	~GUI();
 
@@ -25,6 +25,7 @@ public:
 	std::vector<sf::VertexArray> grid();
 private:
 	
+	Simulation sim;
 	std::shared_ptr<sf::RenderWindow> gui_RenderWindow;
 	//Window 1
    std::shared_ptr<sfg::Window>  gui_Window;
@@ -58,6 +59,11 @@ private:
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_min;
    std::shared_ptr<sfg::Entry> gui_Entry_pos_x_scl;
    std::shared_ptr<sfg::Entry> gui_Entry_pos_y_scl;
+   //Window 4
+   std::shared_ptr<sfg::Window>  gui_Window4;
+   std::shared_ptr<sfg::Box> gui_Box4;
+   std::shared_ptr<sfg::Button> gui_button_d_Fähnchen;
+   std::shared_ptr<sfg::Button> gui_button_d_Linien;
 
    int last_auswahl;
 
@@ -76,6 +82,8 @@ private:
    void Set_E();
    void Reset_E();
  
-   
+   //Signale w4
+   void Darstellung_Feld_Set();
+   void Darstellung_Feld_Linien();
 };
 

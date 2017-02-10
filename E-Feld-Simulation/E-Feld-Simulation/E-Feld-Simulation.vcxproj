@@ -150,25 +150,21 @@
   <ItemGroup>
     <ClCompile Include="Darstellung_Feldlinien.cpp" />
     <ClCompile Include="Darstellung_Fähnchen.cpp" />
-    <ClCompile Include="Elektrische_Feldstärke.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="InConvert.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Punktladung.cpp" />
-    <ClCompile Include="Vektor2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Darstellung_Feldlinien.h" />
     <ClInclude Include="Darstellung_Fähnchen.h" />
-    <ClInclude Include="Elektrische_Feldstärke.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="InConvert.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Punktladung.h" />
-    <ClInclude Include="Vektor2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math_PH.h" />

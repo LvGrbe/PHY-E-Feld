@@ -1,9 +1,10 @@
 #pragma once
 #include <math.h>
 
+
 #define e (1.6022f * (pow(10, -19)))
 #define Elektrische_Feldkonstante (8.85418782 * (pow(10, -12)))
-#define PI 3.141592653589
+#define PI 3.141592654
 
 typedef long double Physik_Value;
 
@@ -43,5 +44,6 @@ namespace Physik
 		return (Ladung / (4 * PI * Elektrische_Feldkonstante * pow(r, 2)));
 	}
 
+	
 
 }
