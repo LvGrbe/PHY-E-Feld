@@ -32,7 +32,7 @@ void Darstellung_Feldlinien::Update()
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
 			Lines[i + n].append(sf::Vertex(InConvert::To_Screen(Start_pos), sf::Color::Black));
 
-			for (int s = 0; s != 100; s++)
+			for (int s = 0; s != 100 && Simulation::Teilchen_vec[i].Q != 0 ; s++)
 			{
 				auto t = Next_Pos(Start_pos, Simulation::Teilchen_vec[i].Q > 0);
 				Lines[i + n].append(sf::Vertex(InConvert::To_Screen(t), sf::Color::Black));
@@ -48,8 +48,6 @@ void Darstellung_Feldlinien::Draw()
 {
 	for (int i = 0; i != Lines.size(); i++)
 	{
-		if (i >= 16)
-			break;
 
 		dFl_RenderWindow->draw(Lines[i]);
 		
@@ -81,6 +79,7 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
+		out *= 0.1f;
 		return pos + out;
 	}
 	else
