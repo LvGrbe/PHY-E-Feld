@@ -15,10 +15,13 @@ public:
 	~Simulation();
 
 	Darstellung_Fähnchen df;
+	Darstellung_Feldlinien Feldlinien;
+	bool Draw_Fähnchen_var;
+	bool Draw_Feldlinien_var;
 	static std::vector<Punktladung> Teilchen_vec;
 	void renderer_Teilchen();
 	void Draw_Fähnchen();
-
+	void Draw_Feldlinin();
 	sf::Font font;
 private:
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;

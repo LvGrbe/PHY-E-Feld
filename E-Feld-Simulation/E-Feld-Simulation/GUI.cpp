@@ -271,11 +271,14 @@ void GUI::Reset_E()
 
 void GUI::Darstellung_Feld_Set()
 {
-	sim.Draw_Fähnchen();
+	sim.Draw_Feldlinien_var = false;
+	sim.Draw_Fähnchen_var = true;
 }
 
 void GUI::Darstellung_Feld_Linien()
 {
+	sim.Draw_Feldlinien_var = true;
+	sim.Draw_Fähnchen_var = false;
 }
 
 

@@ -37,6 +37,6 @@ sf::Vector2f Darstellung_Fähnchen::Elektrische_Feldstärke_Vektoren_Viele(std::ve
 void Darstellung_Fähnchen::Draw()
 {
 	
-			std::cout << "Punkt: " << "2" << " " << "2" << " Elektrische Feldstärke: " << Länge_Vektor(Elektrische_Feldstärke_Vektoren_Viele(ladungen, sf::Vector2f(2, 2))) << std::endl;
+			std::cout << "Punkt: " << "1" << " " << "0" << " Elektrische Feldstärke: " << Länge_Vektor(Elektrische_Feldstärke_Vektoren_Viele(ladungen, sf::Vector2f(1, 0))) << std::endl;
 		
 }
