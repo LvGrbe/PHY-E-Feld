@@ -1,11 +1,12 @@
 #include "Simulation.h"
 
 std::vector<Punktladung> Simulation::Teilchen_vec = std::vector<Punktladung>();
+bool Simulation::Draw_Fähnchen_var = false;
+bool Simulation::Draw_Feldlinien_var = false;
 
 Simulation::Simulation()
 {
-	Draw_Feldlinien_var = false;
-	Draw_Fähnchen_var = false;
+
 	df = Darstellung_Fähnchen(sim_RenderWindow,&Teilchen_vec);
 	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
 	if (!font.loadFromFile("Sanchezregular.otf"))
@@ -15,8 +16,7 @@ Simulation::Simulation()
 
 Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 {
-	Draw_Feldlinien_var = false;
-	Draw_Fähnchen_var = false;
+
 	sim_RenderWindow = Window;
 	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
 	df =  Darstellung_Fähnchen(sim_RenderWindow,&Teilchen_vec);

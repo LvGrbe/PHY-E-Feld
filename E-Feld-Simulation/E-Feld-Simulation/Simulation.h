@@ -22,9 +22,8 @@ public:
 
 	Darstellung_Fähnchen df;
 	Darstellung_Feldlinien dfl;
-	bool Draw_Fähnchen_var;
-	bool Draw_Feldlinien_var;
-private:
+	static bool Draw_Fähnchen_var;
+	static bool Draw_Feldlinien_var;
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 
 	
