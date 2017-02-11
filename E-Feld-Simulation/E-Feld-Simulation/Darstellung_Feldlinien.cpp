@@ -62,7 +62,7 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 {
 	sf::Vector2f Kraft_Vec = sf::Vector2f(0,0);
 	
-	for (int i = 0; i != (*Teilchen_vec).size(); i++)
+	/*for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
 		sf::Vector2f Richtung = (*Teilchen_vec)[i].pos - pos;
 		
@@ -77,8 +77,12 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 		float Kraft = 8987551785 * (1 * (*Teilchen_vec)[i].Q) / std::pow(abstand, 2);
 
 		Kraft_Vec += Richtung * Kraft;
-	}
-	
+	}*/
+
+	Kraft_Vec = Physik::Elektrische_Feldstärke_Vektoren_Viele(pos, Teilchen_vec);
+
+
+
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
