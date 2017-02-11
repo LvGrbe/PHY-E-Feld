@@ -14,7 +14,6 @@ public:
 	~Darstellung_Fähnchen();
 	std::vector<Punktladung>* Teilchen_vec;
 	std::shared_ptr<sf::RenderWindow> df_Window;
-	sf::Vector2f Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f punkt);
 	void Draw();
 	sf::VertexArray Erstelle_Arrow(sf::Vector2i mouspos);
 };
