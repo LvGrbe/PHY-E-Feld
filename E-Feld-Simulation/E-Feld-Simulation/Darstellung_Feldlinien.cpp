@@ -25,9 +25,9 @@ void Darstellung_Feldlinien::Update()
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		for (int n = 0; n != 10; n++)
+		for (int n = 0; n != 9; n++)
 		{
-			int Winkel = 360 / 10 * n;
+			int Winkel = 360 / 9 * n;
 			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * PI / 180), std::sin(Winkel * PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
 
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
@@ -79,9 +79,14 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 		Kraft_Vec += Richtung * Kraft;
 	}*/
 
+
+
 	Kraft_Vec = Physik::Elektrische_Feldstärke_Vektoren_Viele(pos, Teilchen_vec);
 
-
+	if (!Positiv)
+	{
+		Kraft_Vec *= -1.f;
+	}
 
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
