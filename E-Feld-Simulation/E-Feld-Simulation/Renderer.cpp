@@ -7,7 +7,7 @@ GUI Renderer::gui = GUI(Renderer::renderWindow, Renderer::sim);
 
 Renderer::Renderer()
 {	
-
+	
 }
 
 Renderer::~Renderer()
@@ -25,6 +25,8 @@ int Renderer::run()
 	//Grid
 	gui.gridvar = gui.grid();
 	
+	m_gui_Timer.restart();
+
 	while (renderWindow->isOpen())
 	{
 
@@ -46,8 +48,11 @@ int Renderer::run()
 			}
 			
 		}
+		
+		gui.gui_Desktop->Update(m_gui_Timer.restart().asSeconds());
 
-		gui.gui_Desktop->Update(1.0f);
+
+		 
 
 		renderWindow->clear(sf::Color::White);
 
