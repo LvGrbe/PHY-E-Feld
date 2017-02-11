@@ -44,7 +44,6 @@ namespace Physik
 	}
 	static float Länge_Vektor(sf::Vector2f a)
 	{
-
 		return sqrt(pow(a.x, 2) + pow(a.y, 2));
 	}
 	static float Skalarprodukt(sf::Vector2f a, sf::Vector2f b)
@@ -57,7 +56,7 @@ namespace Physik
 		for (int i = 0; i < (*Teilchen_vec).size(); i++)
 		{
 			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
-			Ergebniss =+ (float)((*Teilchen_vec)[i].Q / (4 * PI * Elektrische_Feldkonstante * pow(Physik::Länge_Vektor(OrtsVec), 3))) * OrtsVec;
+			Ergebniss += (float)((*Teilchen_vec)[i].Q / (4 * PI * Elektrische_Feldkonstante * pow(Physik::Länge_Vektor(OrtsVec), 3))) * OrtsVec;
 		}
 		return Ergebniss;
 	}
