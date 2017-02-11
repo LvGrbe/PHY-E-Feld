@@ -56,7 +56,7 @@ namespace Physik
 		sf::Vector2f Ergebniss;
 		for (int i = 0; i < (*Teilchen_vec).size(); i++)
 		{
-			sf::Vector2f OrtsVec = InConvert::To_Sim(punkt) - (*Teilchen_vec)[i].pos;
+			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
 			Ergebniss =+ (float)((*Teilchen_vec)[i].Q / (4 * PI * Elektrische_Feldkonstante * pow(Physik::Länge_Vektor(OrtsVec), 3))) * OrtsVec;
 		}
 		return Ergebniss;
