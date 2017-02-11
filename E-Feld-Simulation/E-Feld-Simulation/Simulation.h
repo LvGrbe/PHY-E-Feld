@@ -26,7 +26,5 @@ public:
 	static bool Draw_Feldlinien_var;
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 
-	
-
 };
 

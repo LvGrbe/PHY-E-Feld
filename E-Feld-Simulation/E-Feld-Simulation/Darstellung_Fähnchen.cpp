@@ -16,27 +16,40 @@ Darstellung_Fähnchen::~Darstellung_Fähnchen()
 {
 }
 
-float Darstellung_Fähnchen::Länge_Vektor(sf::Vector2f a)
-{
-
-	return sqrt(pow(a.x, 2) + pow(a.y, 2));
-}
-
-sf::Vector2f Darstellung_Fähnchen::Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f punkt)
-{
-	sf::Vector2f Ergebniss;
-	for (int i = 0; i < (*Teilchen_vec).size(); i++)
-	{
-		sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
-		Ergebniss =+ (float)((*Teilchen_vec)[i].Q / (4 * PI * Elektrische_Feldkonstante * pow(Länge_Vektor(OrtsVec), 3))) * OrtsVec;
-	}
-	
-	return Ergebniss;
-}
-
 void Darstellung_Fähnchen::Draw()
 {
 	
-			std::cout << "Punkt: " << "1" << " " << "0" << " Elektrische Feldstärke: " << Länge_Vektor(Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f(1, 0))) << std::endl;
-		
+	float angle = 90;
+	sf::Transform Rotation;
+	Rotation.rotate(angle, sf::Mouse::getPosition(*df_Window).x, sf::Mouse::getPosition(*df_Window).y);
+	df_Window->draw(Erstelle_Arrow(sf::Mouse::getPosition(*df_Window)), Rotation);
+
 }
+
+sf::VertexArray Darstellung_Fähnchen::Erstelle_Arrow(sf::Vector2i mouspos)
+{
+
+	sf::VertexArray Arrow(sf::LineStrip,9);
+	Arrow[0].position = sf::Vector2f(mouspos.x, mouspos.y);
+	Arrow[0].color = sf::Color::Black;
+	Arrow[1].position = sf::Vector2f(mouspos.x-2, mouspos.y);
+	Arrow[1].color = sf::Color::Black;
+	Arrow[2].position = sf::Vector2f(mouspos.x-2, mouspos.y - 10);
+	Arrow[2].color = sf::Color::Black;
+	Arrow[3].position = sf::Vector2f(mouspos.x - 5, mouspos.y - 10);
+	Arrow[3].color = sf::Color::Black;
+	Arrow[4].position = sf::Vector2f(mouspos.x, mouspos.y - 20);
+	Arrow[4].color = sf::Color::Black;
+	Arrow[5].position = sf::Vector2f(mouspos.x + 5, mouspos.y - 10);
+	Arrow[5].color = sf::Color::Black;
+	Arrow[6].position = sf::Vector2f(mouspos.x + 2, mouspos.y - 10);
+	Arrow[6].color = sf::Color::Black;
+	Arrow[7].position = sf::Vector2f(mouspos.x + 2, mouspos.y);
+	Arrow[7].color = sf::Color::Black;
+
+	Arrow[8].position = sf::Vector2f(mouspos.x, mouspos.y);
+	Arrow[8].color = sf::Color::Black;
+
+	return Arrow;
+}
+

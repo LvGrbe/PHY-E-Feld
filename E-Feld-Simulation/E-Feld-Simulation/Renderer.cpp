@@ -65,6 +65,7 @@ int Renderer::run()
 		if (sim.Draw_Fähnchen_var)
 		{
 			sim.Draw_Fähnchen();
+			sim.Draw_Feldlinin();
 		}
 		else if (sim.Draw_Feldlinien_var)
 		{
