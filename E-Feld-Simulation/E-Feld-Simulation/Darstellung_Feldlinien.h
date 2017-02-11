@@ -16,6 +16,7 @@ public:
 	void Update();
 	void Draw();
 
+	sf::Color m_Color;
 
 private:
 	std::shared_ptr<sf::RenderWindow> dFl_RenderWindow;

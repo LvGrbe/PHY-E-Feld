@@ -245,9 +245,9 @@ void GUI::AllesLöschen()
 void GUI::Set()
 {
 	int auswahl = gui_comboBox->GetSelectedItem();
-	Simulation::Teilchen_vec[auswahl].pos.x = std::atoi(gui_Entry_pos_x->GetText().toAnsiString().c_str());
-	Simulation::Teilchen_vec[auswahl].pos.y = std::atoi(gui_Entry_pos_y->GetText().toAnsiString().c_str());
-	Simulation::Teilchen_vec[auswahl].Q     = std::atoi(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
+	Simulation::Teilchen_vec[auswahl].pos.x = std::stof(gui_Entry_pos_x->GetText().toAnsiString().c_str());
+	Simulation::Teilchen_vec[auswahl].pos.y = std::stof(gui_Entry_pos_y->GetText().toAnsiString().c_str());
+	Simulation::Teilchen_vec[auswahl].Q     = std::stof(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
 
 	Simulation::Teilchen_vec[auswahl].col = sf::Color::Blue;
 	gui_Entry_Ladung->SetText("Ladung");
