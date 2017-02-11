@@ -23,9 +23,8 @@ public:
     static GUI gui;	
 	static Simulation sim;
 
+	sf::Clock m_gui_Timer;
 	
-	
-	
-	
+
 };
 
