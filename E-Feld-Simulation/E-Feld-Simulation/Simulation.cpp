@@ -16,7 +16,6 @@ Simulation::Simulation()
 
 Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 {
-
 	sim_RenderWindow = Window;
 	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
 	df =  Darstellung_Fähnchen(sim_RenderWindow,&Teilchen_vec);
@@ -24,7 +23,6 @@ Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 	{
 	}
 }
-
 
 Simulation::~Simulation()
 {

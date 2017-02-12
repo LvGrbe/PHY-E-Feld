@@ -64,7 +64,7 @@ private:
    std::shared_ptr<sfg::Box> gui_Box4;
    std::shared_ptr<sfg::Button> gui_button_d_Fähnchen;
    std::shared_ptr<sfg::Button> gui_button_d_Linien;
-
+   std::shared_ptr<sfg::Button> gui_button_d_Reset;
    int last_auswahl;
 
    bool Point_On_Window(sf::Vector2i pos);
@@ -85,5 +85,6 @@ private:
    //Signale w4
    void Darstellung_Feld_Set();
    void Darstellung_Feld_Linien();
+   void Darstellung_Keine();
 };
 

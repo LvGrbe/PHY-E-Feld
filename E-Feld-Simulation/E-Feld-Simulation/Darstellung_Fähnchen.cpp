@@ -19,7 +19,16 @@ Darstellung_Fähnchen::~Darstellung_Fähnchen()
 void Darstellung_Fähnchen::Draw()
 {
 	
-	float angle = 90;
+	sf::VertexArray line(sf::Lines, 2);
+	line[0].position = InConvert::To_Screen(sf::Vector2f(0,0));
+	line[1].position = (sf::Vector2f)sf::Mouse::getPosition(*df_Window);
+	line[0].color = sf::Color::Black;
+	line[1].color = sf::Color::Black;
+	df_Window->draw(line);
+
+	float angle = 0;
+	angle = Physik::Winkel_zwischen_Vektor_Vektor(Physik::Elektrische_Feldstärke_Vektoren_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec), sf::Vector2f(0, 1));
+	std::cout << "Winkel:  " << angle << std::endl;
 	sf::Transform Rotation;
 	Rotation.rotate(angle, sf::Mouse::getPosition(*df_Window).x, sf::Mouse::getPosition(*df_Window).y);
 	df_Window->draw(Erstelle_Arrow(sf::Mouse::getPosition(*df_Window)), Rotation);
