@@ -6,9 +6,10 @@ Darstellung_Pfeil::Darstellung_Pfeil()
 {
 }
 
-Darstellung_Pfeil::Darstellung_Pfeil(std::shared_ptr<sf::RenderWindow> Window,std::vector<Punktladung>* teilchen)
-	: df_Window(Window),Teilchen_vec(teilchen)
+Darstellung_Pfeil::Darstellung_Pfeil(std::shared_ptr<sf::RenderWindow> Window,std::vector<Punktladung>* teilchen, sf::Text* text)
+	: df_Window(Window),Teilchen_vec(teilchen),text(text)
 {
+
 }
 
 
@@ -19,13 +20,29 @@ Darstellung_Pfeil::~Darstellung_Pfeil()
 void Darstellung_Pfeil::Draw()
 {
 
+	//Variablen
 	float angle = 0;
-	angle = Physik::Winkel_Vektor_Positiv_x_Achse(Physik::Elektrische_Feldstärke_Vektoren_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec));
-	std::cout << "Winkel:  " << angle << std::endl;
+	std::ostringstream oss;
+	sf::Vector2f simkoords = InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window));
+
+	//Berechnungen
+	sf::Vector2f Elektrische_Feldstärke = Physik::Elektrische_Feldstärke_Vektoren_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec);
+	angle = Physik::Winkel_Vektor_Positiv_x_Achse(Elektrische_Feldstärke);
+
+	//Einstellung Pfeil Rotation
 	sf::Transform Rotation;
 	Rotation.rotate(angle, sf::Mouse::getPosition(*df_Window).x, sf::Mouse::getPosition(*df_Window).y);
-	df_Window->draw(Erstelle_Arrow(sf::Mouse::getPosition(*df_Window)), Rotation);
+	
+	//Text Einstellungen
+	oss << "Die Elektrische Feldstärke am Punkt " <<  " " << simkoords.x << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
+	std::string var = oss.str();
+	text->setString(var);
+	text->setCharacterSize(12);
+	text->setColor(sf::Color::Black);
 
+	//Draw
+	df_Window->draw(*text);
+	df_Window->draw(Erstelle_Arrow(sf::Mouse::getPosition(*df_Window)), Rotation);
 }
 
 sf::VertexArray Darstellung_Pfeil::Erstelle_Arrow(sf::Vector2i mouspos)

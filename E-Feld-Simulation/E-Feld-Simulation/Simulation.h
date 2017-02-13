@@ -19,6 +19,7 @@ public:
 	void Draw_Pfeil();
 	void Draw_Feldlinin();
 	sf::Font font;
+	sf::Text *text;
 
 	Darstellung_Pfeil df;
 	Darstellung_Feldlinien dfl;

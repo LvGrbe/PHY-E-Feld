@@ -6,22 +6,27 @@ bool Simulation::Draw_Feldlinien_var = false;
 
 Simulation::Simulation()
 {
-
-	df = Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec);
-	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
+	text = new sf::Text();
 	if (!font.loadFromFile("Sanchezregular.otf"))
 	{
 	}
+	text->setFont(font);
+	df = Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec,text);
+	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
+
 }
 
 Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
+	: sim_RenderWindow(Window)
 {
-	sim_RenderWindow = Window;
-	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
-	df =  Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec);
+	text = new sf::Text();
 	if (!font.loadFromFile("Sanchezregular.otf"))
 	{
 	}
+	text->setFont(font);
+	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
+	df =  Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec, text);
+	
 }
 
 Simulation::~Simulation()
