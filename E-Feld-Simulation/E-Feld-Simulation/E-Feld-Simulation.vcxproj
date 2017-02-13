@@ -149,7 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darstellung_Feldlinien.cpp" />
-    <ClCompile Include="Darstellung_Fähnchen.cpp" />
+    <ClCompile Include="Darstellung_Pfeil.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="InConvert.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,7 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Darstellung_Feldlinien.h" />
-    <ClInclude Include="Darstellung_Fähnchen.h" />
+    <ClInclude Include="Darstellung_Pfeil.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="InConvert.h" />
     <ClInclude Include="Renderer.h" />

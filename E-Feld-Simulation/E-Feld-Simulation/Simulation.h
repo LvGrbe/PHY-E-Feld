@@ -5,7 +5,7 @@
 #include "Math_PH.h"
 #include "Punktladung.h"
 #include "Darstellung_Feldlinien.h"
-#include "Darstellung_Fähnchen.h"
+#include "Darstellung_Pfeil.h"
 
 class Simulation
 {
@@ -16,13 +16,13 @@ public:
 	
 	static std::vector<Punktladung> Teilchen_vec;
 	void renderer_Teilchen();
-	void Draw_Fähnchen();
+	void Draw_Pfeil();
 	void Draw_Feldlinin();
 	sf::Font font;
 
-	Darstellung_Fähnchen df;
+	Darstellung_Pfeil df;
 	Darstellung_Feldlinien dfl;
-	static bool Draw_Fähnchen_var;
+	static bool Draw_Pfeil_var;
 	static bool Draw_Feldlinien_var;
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 

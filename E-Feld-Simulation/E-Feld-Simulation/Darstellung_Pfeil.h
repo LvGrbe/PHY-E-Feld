@@ -6,12 +6,12 @@
 #include <SFML\Graphics.hpp>
 #include "InConvert.h"
 
-class Darstellung_Fähnchen
+class Darstellung_Pfeil
 {
 public:
-	Darstellung_Fähnchen();
-	Darstellung_Fähnchen(std::shared_ptr<sf::RenderWindow> Window,std::vector<Punktladung>* teilchen);
-	~Darstellung_Fähnchen();
+	Darstellung_Pfeil();
+	Darstellung_Pfeil(std::shared_ptr<sf::RenderWindow> Window,std::vector<Punktladung>* teilchen);
+	~Darstellung_Pfeil();
 	std::vector<Punktladung>* Teilchen_vec;
 	std::shared_ptr<sf::RenderWindow> df_Window;
 	void Draw();

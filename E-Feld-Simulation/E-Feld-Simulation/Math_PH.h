@@ -46,9 +46,9 @@ namespace Physik
 	{
 		return sqrt(pow(a.x, 2) + pow(a.y, 2));
 	}
-	static float Winkel_zwischen_Vektor_Vektor(sf::Vector2f a, sf::Vector2f b)
+	static float Winkel_Vektor_Positiv_x_Achse(sf::Vector2f a)
 	{
-		return atan2(a.x * b.y - a.y * b.x, a.x * b.y + a.y * b.y) * 180 / PI;	
+		return atan2(a.x,a.y) * 180 / PI;	
 	}
 	static sf::Vector2f Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f punkt,std::vector<Punktladung>* Teilchen_vec)
 	{

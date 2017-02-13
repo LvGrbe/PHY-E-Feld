@@ -62,7 +62,7 @@ private:
    //Window 4
    std::shared_ptr<sfg::Window>  gui_Window4;
    std::shared_ptr<sfg::Box> gui_Box4;
-   std::shared_ptr<sfg::Button> gui_button_d_Fähnchen;
+   std::shared_ptr<sfg::Button> gui_button_d_Pfeil;
    std::shared_ptr<sfg::Button> gui_button_d_Linien;
    std::shared_ptr<sfg::Button> gui_button_d_Reset;
    int last_auswahl;

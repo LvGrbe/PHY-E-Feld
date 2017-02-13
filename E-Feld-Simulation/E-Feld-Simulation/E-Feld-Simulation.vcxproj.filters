@@ -33,10 +33,10 @@
     <ClCompile Include="Punktladung.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Darstellung_Fähnchen.cpp">
+    <ClCompile Include="InConvert.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="InConvert.cpp">
+    <ClCompile Include="Darstellung_Pfeil.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +56,10 @@
     <ClInclude Include="Punktladung.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Darstellung_Fähnchen.h">
+    <ClInclude Include="InConvert.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="InConvert.h">
+    <ClInclude Include="Darstellung_Pfeil.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
