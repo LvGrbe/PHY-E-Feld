@@ -9,9 +9,7 @@ Darstellung_Pfeil::Darstellung_Pfeil()
 Darstellung_Pfeil::Darstellung_Pfeil(std::shared_ptr<sf::RenderWindow> Window,std::vector<Punktladung>* teilchen, sf::Text* text)
 	: df_Window(Window),Teilchen_vec(teilchen),text(text)
 {
-
 }
-
 
 Darstellung_Pfeil::~Darstellung_Pfeil()
 {
