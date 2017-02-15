@@ -25,15 +25,15 @@ void Darstellung_Feldlinien::Update()
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		for (int n = 0; n != 9; n++)
+		for (int n = 0; n != 6; n++)
 		{
-			int Winkel = 360 / 9 * n;
-			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * PI / 180), std::sin(Winkel * PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
+			int Winkel = 360 / 6 * n;
+			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * M_PI / 180), std::sin(Winkel * M_PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
 
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
 			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
-			for (int s = 0; s != 100 && (*Teilchen_vec)[i].Q != 0 ; s++)
+			for (int s = 0; s != 10000 && (*Teilchen_vec)[i].Q != 0 ; s++)
 			{
 				auto t = Next_Pos(Start_pos, (*Teilchen_vec)[i].Q > 0);
 				Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));
@@ -91,7 +91,7 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
-		out *= 0.1f;
+		out *= 0.0001f;
 		return pos + out;
 	}
 	else

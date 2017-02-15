@@ -5,7 +5,7 @@
 Kondensator::Kondensator()
 {
 
-	line = sf::VertexArray(sf::Lines, 2);
+	
 }
 
 

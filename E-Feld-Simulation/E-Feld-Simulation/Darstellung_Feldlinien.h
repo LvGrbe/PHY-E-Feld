@@ -16,6 +16,7 @@ public:
 	void Update();
 	void Draw();
 
+	int anzahl_Feldlinien;
 	sf::Color m_Color;
 
 private:

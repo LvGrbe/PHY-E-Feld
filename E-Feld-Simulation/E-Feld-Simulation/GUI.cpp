@@ -249,7 +249,7 @@ void GUI::AllesLöschen()
 void GUI::Set()
 {
 	int auswahl = gui_comboBox->GetSelectedItem();
-	if (auswahl <= 0)
+	if (auswahl < 0)
 	{
 	}
 	else
