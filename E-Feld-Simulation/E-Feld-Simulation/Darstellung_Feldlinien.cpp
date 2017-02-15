@@ -33,7 +33,7 @@ void Darstellung_Feldlinien::Update()
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
 			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
-			for (int s = 0; s != 10000 && (*Teilchen_vec)[i].Q != 0 ; s++)
+			for (int s = 0; s != 1000 && (*Teilchen_vec)[i].Q != 0 ; s++)
 			{
 				auto t = Next_Pos(Start_pos, (*Teilchen_vec)[i].Q > 0);
 				Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));
@@ -62,25 +62,6 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 {
 	sf::Vector2f Kraft_Vec = sf::Vector2f(0,0);
 	
-	/*for (int i = 0; i != (*Teilchen_vec).size(); i++)
-	{
-		sf::Vector2f Richtung = (*Teilchen_vec)[i].pos - pos;
-		
-		float abstand = (float)(std::sqrt(std::pow(Richtung.x, 2) + std::pow(Richtung.y, 2)));
-
-		Richtung /= abstand;
-		
-		if(Positiv)
-			Richtung *= -1.f;
-
-		// Voleufig
-		float Kraft = 8987551785 * (1 * (*Teilchen_vec)[i].Q) / std::pow(abstand, 2);
-
-		Kraft_Vec += Richtung * Kraft;
-	}*/
-
-
-
 	Kraft_Vec = Physik::Elektrische_Feldstärke_Vektoren_Viele(pos, Teilchen_vec);
 
 	if (!Positiv)
@@ -91,7 +72,7 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
-		out *= 0.0001f;
+		out *= 0.01f;
 		return pos + out;
 	}
 	else
