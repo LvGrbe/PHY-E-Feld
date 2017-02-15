@@ -24,7 +24,7 @@ void Darstellung_Pfeil::Draw()
 	sf::Vector2f simkoords = InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window));
 
 	//Berechnungen
-	sf::Vector2f Elektrische_Feldstärke = Physik::Elektrische_Feldstärke_Vektoren_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec);
+	sf::Vector2<double> Elektrische_Feldstärke = Physik::Elektrische_Feldstärke_Vektoren_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec);
 	angle = Physik::Winkel_Vektor_Positiv_x_Achse(Elektrische_Feldstärke);
 
 	//Einstellung Pfeil Rotation
