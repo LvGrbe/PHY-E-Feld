@@ -20,8 +20,7 @@ void Darstellung_Feldlinien::Update()
 {
 
 	Lines.clear();
-
-	int line_counter = 0;
+	line_counter = 0;
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
