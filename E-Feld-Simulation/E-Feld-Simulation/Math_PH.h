@@ -15,7 +15,7 @@ namespace Physik
         b in m 
         return c in m
     */
-    static Physik_Value distance(Physik_Value a, Physik_Value b)
+    static Physik_Value Satz_des_Pytagoras(Physik_Value a, Physik_Value b)
     {
         return sqrt(pow(a, 2) + pow(b, 2));
     }

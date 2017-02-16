@@ -14,6 +14,15 @@ Punktladung::~Punktladung()
 {
 }
 
+bool Punktladung::OnPoint(sf::Vector2f pos_in)
+{
+	sf::Vector2f Dis = pos - pos_in;
+	
+	float Laenge = sqrt(pow(Dis.x, 2) + pow(Dis.y, 2));
+
+	return Laenge < (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0.f));
+}
+
 sf::CircleShape Punktladung::Erstelle_Kreis_Ladung(double Radius)
 {
 	sf::CircleShape Kreis = sf::CircleShape();

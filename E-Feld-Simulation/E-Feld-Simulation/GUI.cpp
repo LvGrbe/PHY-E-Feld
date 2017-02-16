@@ -212,6 +212,9 @@ void GUI::Button_Erstelle_Click()
 //Makiert das Aktuell ausgewählte Teilchen
 void GUI::ComboAuswahl()
 {
+	if (Simulation::Teilchen_vec.size() < last_auswahl)
+		return;
+
 	Simulation::Teilchen_vec[last_auswahl].col = sf::Color::Blue;
 	int auswahl = gui_comboBox->GetSelectedItem();
 	last_auswahl = auswahl;

@@ -25,19 +25,30 @@ void Darstellung_Feldlinien::Update()
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		for (int n = 0; n != 6; n++)
+		for (int n = 0; n != 20; n++)
 		{
-			int Winkel = 360 / 6 * n;
+			int Winkel = 360 / 20 * n;
 			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * M_PI / 180), std::sin(Winkel * M_PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
 
 			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
 			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
-			for (int s = 0; s != 1000 && (*Teilchen_vec)[i].Q != 0 ; s++)
+			bool ende = false;
+			for (int s = 0; s != 1000 && (*Teilchen_vec)[i].Q != 0 && !ende; s++)
 			{
 				auto t = Next_Pos(Start_pos, (*Teilchen_vec)[i].Q > 0);
 				Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));
 				Start_pos = t;
+
+				
+				for (int T = 0; T != (*Teilchen_vec).size(); T++)
+				{
+					if ((*Teilchen_vec)[T].OnPoint(Start_pos) && T != i )
+					{
+						ende = true;
+						break;
+					}
+				}
 			}
 
 			line_counter++;
