@@ -242,6 +242,7 @@ void GUI::AuswahlLöschen()
 	int auswahl = gui_comboBox->GetSelectedItem();
 	gui_comboBox->RemoveItem(auswahl);
 	Simulation::Teilchen_vec.erase(Simulation::Teilchen_vec.begin() + auswahl);
+	Simulation::aktuelle_Teilchen_zahl = 0;
 }
 
 void GUI::AllesLöschen()
