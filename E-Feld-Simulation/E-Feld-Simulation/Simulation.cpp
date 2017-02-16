@@ -42,6 +42,18 @@ void Simulation::renderer_Teilchen()
 		d.move(sf::Vector2f(-5, -5));
 		sim_RenderWindow->draw(d);	
 
+		if (Teilchen_vec[i].Ausgewaehlt)
+		{
+			auto Kreis = sf::CircleShape(8.f);
+			Kreis.setOutlineColor(sf::Color::Black);
+			Kreis.setOutlineThickness(1.f);
+			Kreis.setFillColor(sf::Color(0, 0, 0, 0));
+			Kreis.setPosition(d.getPosition());
+			Kreis.move(-3, -3);
+			sim_RenderWindow->draw(Kreis);
+		}
+
+
 	}
 
 

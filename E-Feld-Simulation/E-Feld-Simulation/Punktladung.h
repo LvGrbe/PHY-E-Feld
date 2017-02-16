@@ -15,5 +15,7 @@ public:
 	sf::Vector2f pos;
 	sf::Color col;
 	sf::CircleShape Erstelle_Kreis_Ladung(double Radius);
+
+	bool Ausgewaehlt;
 };
 

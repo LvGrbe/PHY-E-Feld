@@ -20,6 +20,10 @@ public:
 
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
+	//
+
+	void Ladung_Auswählen(int NR);
+	void Ladung_Endwählen();
 	//Grid
 	std::vector<sf::VertexArray> gridvar;
 	std::vector<sf::VertexArray> grid();

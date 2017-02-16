@@ -175,6 +175,8 @@ bool GUI::Point_On_Window(sf::Vector2i pos)
 		return true;
 	else if (gui_Window3->GetAllocation().contains(sf::Vector2f(pos)))
 		return true;
+	else if (gui_Window4->GetAllocation().contains(sf::Vector2f(pos)))
+		return true;
 	else
 		return false;
 }
@@ -215,10 +217,13 @@ void GUI::ComboAuswahl()
 	if (Simulation::Teilchen_vec.size() < last_auswahl)
 		return;
 
-	Simulation::Teilchen_vec[last_auswahl].col = sf::Color::Blue;
+	/*Simulation::Teilchen_vec[last_auswahl].col = sf::Color::Blue;
 	int auswahl = gui_comboBox->GetSelectedItem();
 	last_auswahl = auswahl;
-	Simulation::Teilchen_vec[auswahl].col = sf::Color::Red;
+	Simulation::Teilchen_vec[auswahl].col = sf::Color::Red;*/
+
+	int auswahl = gui_comboBox->GetSelectedItem();
+	Ladung_Auswählen(auswahl);
 
 	std::stringstream ss;
 	ss << Simulation::Teilchen_vec[auswahl].pos.x;
@@ -261,10 +266,12 @@ void GUI::Set()
 		Simulation::Teilchen_vec[auswahl].pos.y = std::stof(gui_Entry_pos_y->GetText().toAnsiString().c_str());
 		Simulation::Teilchen_vec[auswahl].Q = std::stof(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
 
-		Simulation::Teilchen_vec[auswahl].col = sf::Color::Blue;
+		Ladung_Endwählen();
 		gui_Entry_Ladung->SetText("Ladung");
 		gui_Entry_pos_x->SetText("x:");
 		gui_Entry_pos_y->SetText("y:");
+
+
 	}
 }
 
@@ -299,6 +306,27 @@ void GUI::Darstellung_Keine()
 	sim.Draw_Feldlinien_var = false;
 }
 
+
+void GUI::Ladung_Auswählen(int NR)
+{
+	if (!(last_auswahl > Simulation::Teilchen_vec.size()) )
+	{
+		Simulation::Teilchen_vec[last_auswahl].Ausgewaehlt = false;
+	}
+	if (!(NR > Simulation::Teilchen_vec.size()))
+	{
+		last_auswahl = NR;
+		Simulation::Teilchen_vec[NR].Ausgewaehlt = true;
+	}
+}
+
+void GUI::Ladung_Endwählen()
+{
+	if (!(last_auswahl > Simulation::Teilchen_vec.size()))
+	{
+		Simulation::Teilchen_vec[last_auswahl].Ausgewaehlt = false;
+	}
+}
 
 std::vector<sf::VertexArray> GUI::grid()
 {
