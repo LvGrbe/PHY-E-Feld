@@ -39,6 +39,9 @@
     <ClCompile Include="Darstellung_Pfeil.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Äquipotentialflächen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -60,6 +63,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Darstellung_Pfeil.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Äquipotentialflächen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
