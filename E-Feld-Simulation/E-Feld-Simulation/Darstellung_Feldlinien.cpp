@@ -1,6 +1,8 @@
 #include "Darstellung_Feldlinien.h"
 
-
+std::mutex mutex_Lines;
+int Darstellung_Feldlinien::line_counter = 0;
+int Darstellung_Feldlinien::efl = 0;
 
 Darstellung_Feldlinien::Darstellung_Feldlinien()
 {
@@ -18,48 +20,20 @@ Darstellung_Feldlinien::~Darstellung_Feldlinien()
 
 void Darstellung_Feldlinien::Update()
 {
-	std::mutex mutex_Lines_vec;
-	std::mutex mutex_Line_count;
-
-
-
-
-
 	Lines.clear();
 	line_counter = 0;
+	std::thread t[30];
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		for (int n = 0; n != 20; n++)
-		{
-			int Winkel = 360 / 20 * n;
-			sf::Vector2f Start_pos = (*Teilchen_vec)[i].pos + sf::Vector2f(std::cos(Winkel * M_PI / 180), std::sin(Winkel * M_PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
-
-			Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
-			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
-
-			bool ende = false;
-			for (int s = 0; s != 1000 && (*Teilchen_vec)[i].Q != 0 && !ende; s++)
-			{
-				auto t = Next_Pos(Start_pos, (*Teilchen_vec)[i].Q > 0);
-				Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));
-				Start_pos = t;
-
-				
-				for (int T = 0; T != (*Teilchen_vec).size(); T++)
-				{
-					if ((*Teilchen_vec)[T].OnPoint(Start_pos) && T != i )
-					{
-						ende = true;
-						break;
-					}
-				}
-			}
-
-			line_counter++;
-		}
+		efl = i;
+		t[i] = std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20);
 	}
+	for (int x = 0; x != (*Teilchen_vec).size(); x++)
+	{
 
+		t[x].join();
+	}
 
 }
 
@@ -70,6 +44,43 @@ void Darstellung_Feldlinien::Draw()
 
 		dFl_RenderWindow->draw(Lines[i]);
 		
+	}
+
+}
+
+void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen, int anzahl_linien)
+{
+
+	for (int n = 0; n != anzahl_linien; n++)
+	{
+		int Winkel = 360 / anzahl_linien * n;
+		sf::Vector2f Start_pos = (*Teilchenv)[teilchen].pos + sf::Vector2f(std::cos(Winkel * M_PI / 180), std::sin(Winkel * M_PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
+
+		mutex_Lines.lock();
+		Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
+		Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
+
+		bool ende = false;
+		for (int s = 0; s != 1000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
+		{
+			
+			auto t = Next_Pos(Start_pos, (*Teilchen_vec)[teilchen].Q > 0);
+			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));			
+			Start_pos = t;
+			
+			for (int T = 0; T != (*Teilchen_vec).size(); T++)
+			{
+				if ((*Teilchen_vec)[teilchen].OnPoint(Start_pos) && T != efl)
+				{
+					ende = true;
+					break;
+				}
+			}
+
+		}
+		
+		line_counter++;
+		mutex_Lines.unlock();
 	}
 
 }

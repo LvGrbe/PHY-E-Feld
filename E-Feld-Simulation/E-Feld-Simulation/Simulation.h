@@ -15,6 +15,7 @@ public:
 	~Simulation();
 	
 	static std::vector<Punktladung> Teilchen_vec;
+	static int aktuelle_Teilchen_zahl;
 	void renderer_Teilchen();
 	void Draw_Pfeil();
 	void Draw_Feldlinin();

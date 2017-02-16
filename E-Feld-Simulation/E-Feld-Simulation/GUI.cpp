@@ -248,7 +248,6 @@ void GUI::AllesLöschen()
 {
 	gui_comboBox->Clear();
 	Simulation::Teilchen_vec.clear();
-
 	gui_Entry_Ladung->SetText("Ladung");
 	gui_Entry_pos_x->SetText("x:");
 	gui_Entry_pos_y->SetText("y:");

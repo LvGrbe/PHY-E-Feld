@@ -3,6 +3,7 @@
 std::vector<Punktladung> Simulation::Teilchen_vec = std::vector<Punktladung>();
 bool Simulation::Draw_Pfeil_var = false;
 bool Simulation::Draw_Feldlinien_var = false;
+int Simulation::aktuelle_Teilchen_zahl = 0;
 
 Simulation::Simulation()
 {
@@ -66,7 +67,12 @@ void Simulation::Draw_Pfeil()
 
 void Simulation::Draw_Feldlinin()
 {
-	dfl.Update();
+
+	if ( aktuelle_Teilchen_zahl != Teilchen_vec.size())
+	{
+		dfl.Update();
+		aktuelle_Teilchen_zahl = Teilchen_vec.size();
+	}
 
 	dfl.Draw();
 }

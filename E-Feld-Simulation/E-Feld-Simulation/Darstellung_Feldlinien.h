@@ -22,7 +22,9 @@ public:
 
 
 	std::vector<sf::VertexArray> Lines;
-	int line_counter;
+	static int line_counter;
+	static int efl;
+	void thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen,int anzahl_linien);
 
 private:
 	std::shared_ptr<sf::RenderWindow> dFl_RenderWindow;
