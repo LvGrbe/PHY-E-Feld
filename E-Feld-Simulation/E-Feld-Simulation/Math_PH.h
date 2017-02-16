@@ -59,7 +59,7 @@ namespace Physik
 
 		return Ergebniss;
 	}
-	static  double Integrieren(float obergrenze, float unteregrenze, double dx, sf::Vector2i p, std::vector<Punktladung>* Teilchen_vec, sf::Vector2f(*f)(sf::Vector2f p, std::vector<Punktladung>* Teilchen_vec))
+	static  double Integrieren_E(float obergrenze, float unteregrenze, double dx, sf::Vector2i p, std::vector<Punktladung>* Teilchen_vec, sf::Vector2f(*f)(sf::Vector2f p, std::vector<Punktladung>* Teilchen_vec))
 	{
 		if (unteregrenze > obergrenze)
 		{
