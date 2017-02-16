@@ -74,7 +74,7 @@ namespace Physik
 
 		for (int i = 0; i < anzahlStreifen; i++)
 		{
-			/*Integral += (*f)((sf::Vector2f)p,Teilchen_vec)*dx;*/
+			Integral += Länge_Vektor((*f)((sf::Vector2f)p,Teilchen_vec)*(float)dx);
 		}
 
 		return Integral;

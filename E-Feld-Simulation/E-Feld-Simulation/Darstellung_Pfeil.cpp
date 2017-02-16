@@ -35,8 +35,10 @@ void Darstellung_Pfeil::Draw()
 	oss << "Die Elektrische Feldstärke am Punkt " <<  " " << simkoords.x << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
 	std::string var = oss.str();
 
-	Physik::Integrieren_E(-2, 2, 0.1, sf::Mouse::getPosition(*df_Window),Teilchen_vec, &Physik::Elektrische_Feldstärke_Vektoren_Viele);
-	std::string vars = oss.str();
+	//Ausgabe Potenzial //Alpha Status to do
+	auto d = Physik::Integrieren_E((double)Physik::Länge_Vektor((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), 0, 0.1, sf::Mouse::getPosition(*df_Window),Teilchen_vec, &Physik::Elektrische_Feldstärke_Vektoren_Viele);
+	std::cout << "Das Potenzial beträgt: " << d << std::endl;
+
 
 	text->setString(var);
 	text->setCharacterSize(12);
