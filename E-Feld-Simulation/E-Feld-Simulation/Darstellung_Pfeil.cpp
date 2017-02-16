@@ -34,6 +34,10 @@ void Darstellung_Pfeil::Draw()
 	//Text Einstellungen
 	oss << "Die Elektrische Feldstärke am Punkt " <<  " " << simkoords.x << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
 	std::string var = oss.str();
+
+	Physik::Integrieren(-2, 2, 0.1, sf::Mouse::getPosition(*df_Window),Teilchen_vec, &Physik::Elektrische_Feldstärke_Vektoren_Viele);
+	std::string vars = oss.str();
+
 	text->setString(var);
 	text->setCharacterSize(12);
 	text->setColor(sf::Color::Black);

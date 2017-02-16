@@ -59,7 +59,25 @@ namespace Physik
 
 		return Ergebniss;
 	}
-	
+	static  double Integrieren(float obergrenze, float unteregrenze, double dx, sf::Vector2i p, std::vector<Punktladung>* Teilchen_vec, sf::Vector2f(*f)(sf::Vector2f p, std::vector<Punktladung>* Teilchen_vec))
+	{
+		if (unteregrenze > obergrenze)
+		{
+			float tmp = obergrenze; obergrenze = unteregrenze;  unteregrenze = tmp;
+		}
+		//Ungefähre ANzahl der Streifen könnte aber nicht passen deswegen nach berechnung
+		int anzahlStreifen = (int)((obergrenze - unteregrenze) / dx);
+		//Deshalb dx anpassen :
+		dx = (obergrenze - unteregrenze) / anzahlStreifen;
 
+		double Integral = 0.0;
+
+		for (int i = 0; i < anzahlStreifen; i++)
+		{
+			/*Integral += (*f)((sf::Vector2f)p,Teilchen_vec)*dx;*/
+		}
+
+		return Integral;
+	}
 
 }

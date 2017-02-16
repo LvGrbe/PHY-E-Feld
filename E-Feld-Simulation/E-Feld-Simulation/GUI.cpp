@@ -271,7 +271,7 @@ void GUI::Set()
 		gui_Entry_pos_x->SetText("x:");
 		gui_Entry_pos_y->SetText("y:");
 
-
+		Simulation::aktuelle_Teilchen_zahl = 0;
 	}
 }
 
