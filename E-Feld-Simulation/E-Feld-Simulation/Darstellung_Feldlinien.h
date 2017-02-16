@@ -20,8 +20,7 @@ public:
 	int anzahl_Feldlinien;
 	sf::Color m_Color;
 
-	std::mutex mutex_Lines_vec;
-	std::mutex mutex_Line_count;
+
 	std::vector<sf::VertexArray> Lines;
 	int line_counter;
 

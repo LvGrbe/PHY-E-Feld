@@ -18,6 +18,12 @@ Darstellung_Feldlinien::~Darstellung_Feldlinien()
 
 void Darstellung_Feldlinien::Update()
 {
+	std::mutex mutex_Lines_vec;
+	std::mutex mutex_Line_count;
+
+
+
+
 
 	Lines.clear();
 	line_counter = 0;
