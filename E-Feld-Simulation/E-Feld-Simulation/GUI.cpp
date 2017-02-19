@@ -140,20 +140,24 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_Box4 = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
 	gui_button_d_Pfeil = sfg::Button::Create();
 	gui_button_d_Linien = sfg::Button::Create();
+	gui_button_d_Äquipotentiallinien = sfg::Button::Create();
 	gui_button_d_Reset = sfg::Button::Create();
 	gui_Window4->SetTitle("Darstellung");
 	gui_Window4->SetPosition(sf::Vector2f(200, 400));
 	gui_button_d_Pfeil->SetLabel("Pfeil");
 	gui_button_d_Linien->SetLabel("Linien");
+	gui_button_d_Äquipotentiallinien->SetLabel("Äquipotentiallinien");
 	gui_button_d_Reset->SetLabel("Keine");
 	//Signals
 	gui_button_d_Pfeil->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Set, this));
 	gui_button_d_Linien->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Linien, this));
+	gui_button_d_Äquipotentiallinien->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Äquipotentiallinien, this));
 	gui_button_d_Reset->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Keine, this));
 
 	gui_Window4->Add(gui_Box4);
 	gui_Box4->Pack(gui_button_d_Pfeil);
 	gui_Box4->Pack(gui_button_d_Linien);
+	gui_Box4->Pack(gui_button_d_Äquipotentiallinien);
 	gui_Box4->Pack(gui_button_d_Reset);
 	gui_Desktop->Add(gui_Window4);
 }
@@ -242,6 +246,7 @@ void GUI::AuswahlLöschen()
 	int auswahl = gui_comboBox->GetSelectedItem();
 	gui_comboBox->RemoveItem(auswahl);
 	Simulation::Teilchen_vec.erase(Simulation::Teilchen_vec.begin() + auswahl);
+	Simulation::aktuelle_Teilchen_zahl = 0;
 }
 
 void GUI::AllesLöschen()
@@ -270,7 +275,7 @@ void GUI::Set()
 		gui_Entry_pos_x->SetText("x:");
 		gui_Entry_pos_y->SetText("y:");
 
-
+		Simulation::aktuelle_Teilchen_zahl = 0;
 	}
 }
 
@@ -291,18 +296,26 @@ void GUI::Darstellung_Feld_Set()
 {
 	sim.Draw_Feldlinien_var = false;
 	sim.Draw_Pfeil_var = true;
+	sim.Draw_Äquipotentiallinien_var = false;
 }
 
 void GUI::Darstellung_Feld_Linien()
 {
 	sim.Draw_Feldlinien_var = true;
 	sim.Draw_Pfeil_var = false;
+	sim.Draw_Äquipotentiallinien_var = false;
+}
+
+void GUI::Darstellung_Äquipotentiallinien()
+{
+	sim.Draw_Äquipotentiallinien_var = true;
 }
 
 void GUI::Darstellung_Keine()
 {
 	sim.Draw_Pfeil_var = false;
 	sim.Draw_Feldlinien_var = false;
+	sim.Draw_Äquipotentiallinien_var = false;
 }
 
 

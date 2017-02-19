@@ -76,6 +76,7 @@ private:
    std::shared_ptr<sfg::Box> gui_Box4;
    std::shared_ptr<sfg::Button> gui_button_d_Pfeil;
    std::shared_ptr<sfg::Button> gui_button_d_Linien;
+   std::shared_ptr<sfg::Button> gui_button_d_Äquipotentiallinien;
    std::shared_ptr<sfg::Button> gui_button_d_Reset;
 
    // Selection
@@ -100,6 +101,7 @@ private:
    //Signale w4
    void Darstellung_Feld_Set();
    void Darstellung_Feld_Linien();
+   void Darstellung_Äquipotentiallinien();
    void Darstellung_Keine();
 };
 

@@ -44,6 +44,7 @@ int Renderer::run()
 
 				InConvert::set(renderWindow->getSize());
 				gui.gridvar = gui.grid();
+				sim.aktuelle_Teilchen_zahl = 0;
 
 			}
 			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)

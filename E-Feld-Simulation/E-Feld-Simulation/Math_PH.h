@@ -50,7 +50,7 @@ namespace Physik
 	}
 	static sf::Vector2f Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f punkt,std::vector<Punktladung>* Teilchen_vec)
 	{
-		sf::Vector2f Ergebniss;
+		sf::Vector2f Ergebniss = sf::Vector2f(0,0);
 		for (int i = 0; i < (*Teilchen_vec).size(); i++)
 		{
 			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
@@ -59,7 +59,17 @@ namespace Physik
 
 		return Ergebniss;
 	}
-	
+	static float Potenzial_Viele(sf::Vector2f punkt, std::vector<Punktladung>* Teilchen_vec)
+	{
 
+		float Ergebniss = 0;
+		for (int i = 0; i < (*Teilchen_vec).size(); i++)
+		{
+			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
+			Ergebniss += ((*Teilchen_vec)[i].Q / (4 * M_PI * Elektrische_Feldkonstante * Länge_Vektor(OrtsVec)));
+		}
+
+		return Ergebniss;
+	}
 
 }
