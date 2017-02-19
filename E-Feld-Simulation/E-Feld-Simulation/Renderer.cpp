@@ -77,15 +77,22 @@ int Renderer::run()
 		}
 
 		//Zeichne Feldlinien
-		if(sim.Draw_Pfeil_var || sim.Draw_Feldlinien_var)
+		if (sim.Draw_Pfeil_var || sim.Draw_Feldlinien_var)
+		{
 			sim.Draw_Feldlinin();
-		
+		}
 		//Zeichen Teilchen
 		sim.renderer_Teilchen();
 
 		//Zeichne Pfeil
 		if (sim.Draw_Pfeil_var)
+		{
 			sim.Draw_Pfeil();
+		}
+		else if (sim.Draw_Äquipotentiallinien_var)
+		{
+			sim.Draw_Äquipotentiallinien();
+		}
 
 		gui.gui_sfgui.Display(*renderWindow);
 
