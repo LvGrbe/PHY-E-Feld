@@ -9,7 +9,7 @@ Darstellung_Feldlinien::Darstellung_Feldlinien()
 }
 
 Darstellung_Feldlinien::Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window, std::vector<Punktladung>* teilchen)
-	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color::Red)
+	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color::Green)
 {
 }
 
@@ -22,12 +22,13 @@ void Darstellung_Feldlinien::Update()
 {
 	Lines.clear();
 	line_counter = 0;
-	std::thread t[30];
+
+	std::vector<std::thread> t;
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		efl = i;
-		t[i] = std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20);
+		//efl = i;
+		t.push_back(std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20));
 	}
 	for (int x = 0; x != (*Teilchen_vec).size(); x++)
 	{
@@ -62,7 +63,7 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 		Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
 		bool ende = false;
-		for (int s = 0; s != 1000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
+		for (int s = 0; s != 3000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
 		{
 			
 			auto t = Next_Pos(Start_pos, (*Teilchen_vec)[teilchen].Q > 0);
@@ -71,7 +72,7 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 			
 			for (int T = 0; T != (*Teilchen_vec).size(); T++)
 			{
-				if ((*Teilchen_vec)[teilchen].OnPoint(Start_pos) && T != efl)
+				if ((*Teilchen_vec)[teilchen].OnPoint(Start_pos) && T != teilchen)
 				{
 					ende = true;
 					break;
@@ -100,7 +101,8 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
-		out *= 0.01f;
+		//out *= 0.01f;
+		out *= InConvert::Get_X_On_Sim(1) - InConvert::Get_X_On_Sim(0);
 		return pos + out;
 	}
 	else
