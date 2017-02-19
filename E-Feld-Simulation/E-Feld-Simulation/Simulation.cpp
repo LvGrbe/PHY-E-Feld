@@ -3,6 +3,7 @@
 std::vector<Punktladung> Simulation::Teilchen_vec = std::vector<Punktladung>();
 bool Simulation::Draw_Pfeil_var = false;
 bool Simulation::Draw_Feldlinien_var = false;
+bool Simulation::Draw_Äquipotentiallinien_var = false;
 int Simulation::aktuelle_Teilchen_zahl = 0;
 
 Simulation::Simulation()
@@ -14,7 +15,7 @@ Simulation::Simulation()
 	text->setFont(font);
 	df = Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec,text);
 	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
-
+	afl = Äquipotentiallinien(sim_RenderWindow, &Teilchen_vec);
 }
 
 Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
@@ -27,7 +28,7 @@ Simulation::Simulation(std::shared_ptr<sf::RenderWindow> Window)
 	text->setFont(font);
 	dfl = Darstellung_Feldlinien(sim_RenderWindow,&Teilchen_vec);
 	df =  Darstellung_Pfeil(sim_RenderWindow,&Teilchen_vec, text);
-	
+	afl = Äquipotentiallinien(sim_RenderWindow, &Teilchen_vec);
 }
 
 Simulation::~Simulation()

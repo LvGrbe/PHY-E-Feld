@@ -25,10 +25,11 @@ public:
 
 	Darstellung_Pfeil df;
 	Darstellung_Feldlinien dfl;
-	Äquipotentialflächen afl;
+	Äquipotentiallinien afl;
 
 	static bool Draw_Pfeil_var;
 	static bool Draw_Feldlinien_var;
+	static bool Draw_Äquipotentiallinien_var;
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 
 };
