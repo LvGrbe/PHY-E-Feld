@@ -2,7 +2,7 @@
 
 std::mutex mutex_Lines;
 int Darstellung_Feldlinien::line_counter = 0;
-int Darstellung_Feldlinien::efl = 0;
+//int Darstellung_Feldlinien::efl = 0;
 
 Darstellung_Feldlinien::Darstellung_Feldlinien()
 {
