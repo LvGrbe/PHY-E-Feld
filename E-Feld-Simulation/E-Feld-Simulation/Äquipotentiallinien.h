@@ -17,8 +17,12 @@ public:
 
 	std::vector<Punktladung>* Teilchen_vec;
 	std::shared_ptr<sf::RenderWindow> dael_Window;
+	std::vector<sf::VertexArray> Lines;
+	sf::Color m_Color;
 
 	void Update();
 	void Draw();
+	sf::Vector2f NextPosÄLinien(sf::Vector2f pos);
+	sf::Vector2f Next_Pos(sf::Vector2f pos, bool Positiv);
 };
 

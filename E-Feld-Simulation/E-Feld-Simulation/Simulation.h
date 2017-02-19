@@ -20,6 +20,7 @@ public:
 	void renderer_Teilchen();
 	void Draw_Pfeil();
 	void Draw_Feldlinin();
+	void Draw_Äquipotentiallinien();
 	sf::Font font;
 	sf::Text *text;
 

@@ -78,3 +78,10 @@ void Simulation::Draw_Feldlinin()
 	dfl.Draw();
 }
 
+void Simulation::Draw_Äquipotentiallinien()
+{
+	afl.Update();
+
+	afl.Draw();
+}
+
