@@ -23,7 +23,7 @@ public:
 
 	std::vector<sf::VertexArray> Lines;
 	static int line_counter;
-	static int efl;
+	//static int efl;
 	void thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen,int anzahl_linien);
 
 private:

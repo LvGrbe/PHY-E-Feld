@@ -27,7 +27,7 @@ void Darstellung_Feldlinien::Update()
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
-		efl = i;
+		//efl = i;
 		t.push_back(std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20));
 	}
 	for (int x = 0; x != (*Teilchen_vec).size(); x++)
@@ -63,7 +63,7 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 		Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
 		bool ende = false;
-		for (int s = 0; s != 1000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
+		for (int s = 0; s != 3000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
 		{
 			
 			auto t = Next_Pos(Start_pos, (*Teilchen_vec)[teilchen].Q > 0);
@@ -72,7 +72,7 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 			
 			for (int T = 0; T != (*Teilchen_vec).size(); T++)
 			{
-				if ((*Teilchen_vec)[teilchen].OnPoint(Start_pos) && T != efl)
+				if ((*Teilchen_vec)[teilchen].OnPoint(Start_pos) && T != teilchen)
 				{
 					ende = true;
 					break;
