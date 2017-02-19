@@ -76,20 +76,16 @@ int Renderer::run()
 			renderWindow->draw(gui.gridvar[i]);
 		}
 
+		//Zeichne Feldlinien
+		if(sim.Draw_Pfeil_var || sim.Draw_Feldlinien_var)
+			sim.Draw_Feldlinin();
+		
 		//Zeichen Teilchen
 		sim.renderer_Teilchen();
-		
-		
+
+		//Zeichne Pfeil
 		if (sim.Draw_Pfeil_var)
-		{
 			sim.Draw_Pfeil();
-			sim.Draw_Feldlinin();
-		}
-		else if (sim.Draw_Feldlinien_var)
-		{
-			sim.Draw_Feldlinin();
-		}
-		
 
 		gui.gui_sfgui.Display(*renderWindow);
 

@@ -449,9 +449,16 @@ void GUI::OnMauseDown(sf::Vector2i pos)
 
 void GUI::OnMauseUp(sf::Vector2i pos)
 {
-	
+	if (Move_auswahl != -1)
+	{
+		//Redraw
+		Simulation::aktuelle_Teilchen_zahl = 0;
+	}
 
 	Move_auswahl = -1;
+
+
+	
 }
 
 void GUI::OnMauseMove(sf::Vector2i pos)

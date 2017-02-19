@@ -9,7 +9,7 @@ Darstellung_Feldlinien::Darstellung_Feldlinien()
 }
 
 Darstellung_Feldlinien::Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window, std::vector<Punktladung>* teilchen)
-	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color::Red)
+	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color::Green)
 {
 }
 
@@ -101,7 +101,8 @@ sf::Vector2f Darstellung_Feldlinien::Next_Pos(sf::Vector2f pos, bool Positiv)
 	if (Kraft_Vec.x != 0 || Kraft_Vec.y != 0)
 	{
 		sf::Vector2f out = Kraft_Vec / (float)(std::sqrt(std::pow(Kraft_Vec.x, 2) + std::pow(Kraft_Vec.y, 2)));
-		out *= 0.01f;
+		//out *= 0.01f;
+		out *= InConvert::Get_X_On_Sim(1) - InConvert::Get_X_On_Sim(0);
 		return pos + out;
 	}
 	else
