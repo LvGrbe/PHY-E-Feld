@@ -32,11 +32,11 @@ void Darstellung_Pfeil::Draw()
 	Rotation.rotate(angle, sf::Mouse::getPosition(*df_Window).x, sf::Mouse::getPosition(*df_Window).y);
 	
 	//Text Einstellungen
-	oss << "Die Elektrische Feldstärke am Punkt " <<  " " << simkoords.x << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
+	oss << "Die Elektrische Feldstärke am Punkt X:" <<  " " << simkoords.x << "" << "Y:" << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
 	std::string var = oss.str();
 
 	//Ausgabe Potenzial //Alpha Status to do
-	auto d = Physik::Integrieren_E((double)Physik::Länge_Vektor((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), 0, 0.1, sf::Mouse::getPosition(*df_Window),Teilchen_vec, &Physik::Elektrische_Feldstärke_Vektoren_Viele);
+	auto d = Physik::Potenzial_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec);
 	std::cout << "Das Potenzial beträgt: " << d << std::endl;
 
 

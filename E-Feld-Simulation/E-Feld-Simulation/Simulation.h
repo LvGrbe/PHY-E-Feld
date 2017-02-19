@@ -6,7 +6,7 @@
 #include "Punktladung.h"
 #include "Darstellung_Feldlinien.h"
 #include "Darstellung_Pfeil.h"
-#include "Äquipotentialflächen.h"
+#include "Äquipotentiallinien.h"
 
 class Simulation
 {

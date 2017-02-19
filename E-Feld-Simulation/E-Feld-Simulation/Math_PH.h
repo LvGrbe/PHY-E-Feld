@@ -50,7 +50,7 @@ namespace Physik
 	}
 	static sf::Vector2f Elektrische_Feldstärke_Vektoren_Viele(sf::Vector2f punkt,std::vector<Punktladung>* Teilchen_vec)
 	{
-		sf::Vector2f Ergebniss;
+		sf::Vector2f Ergebniss = sf::Vector2f(0,0);
 		for (int i = 0; i < (*Teilchen_vec).size(); i++)
 		{
 			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
@@ -59,25 +59,17 @@ namespace Physik
 
 		return Ergebniss;
 	}
-	static  double Integrieren_E(float obergrenze, float unteregrenze, double dx, sf::Vector2i p, std::vector<Punktladung>* Teilchen_vec, sf::Vector2f(*f)(sf::Vector2f p, std::vector<Punktladung>* Teilchen_vec))
+	static float Potenzial_Viele(sf::Vector2f punkt, std::vector<Punktladung>* Teilchen_vec)
 	{
-		if (unteregrenze > obergrenze)
-		{
-			float tmp = obergrenze; obergrenze = unteregrenze;  unteregrenze = tmp;
-		}
-		//Ungefähre ANzahl der Streifen könnte aber nicht passen deswegen nach berechnung
-		int anzahlStreifen = (int)((obergrenze - unteregrenze) / dx);
-		//Deshalb dx anpassen :
-		dx = (obergrenze - unteregrenze) / anzahlStreifen;
 
-		double Integral = 0.0;
-
-		for (int i = 0; i < anzahlStreifen; i++)
+		float Ergebniss = 0;
+		for (int i = 0; i < (*Teilchen_vec).size(); i++)
 		{
-			Integral += Länge_Vektor((*f)((sf::Vector2f)p,Teilchen_vec)*(float)dx);
+			sf::Vector2f OrtsVec = punkt - (*Teilchen_vec)[i].pos;
+			Ergebniss += ((*Teilchen_vec)[i].Q / (4 * M_PI * Elektrische_Feldkonstante * Länge_Vektor(OrtsVec)));
 		}
 
-		return Integral;
+		return Ergebniss;
 	}
 
 }
