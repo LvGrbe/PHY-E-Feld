@@ -103,5 +103,9 @@ private:
    void Darstellung_Feld_Linien();
    void Darstellung_Äquipotentiallinien();
    void Darstellung_Keine();
+
+
+private: // Helper Funktions
+	std::shared_ptr<sfg::Box> Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size = 20);
 };
 

@@ -52,7 +52,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	
  //-----------------------------------------------------------------------
 
-	//Window2
+	//Window2 - Ladung Auswahl
 	gui_Window2 = sfg::Window::Create();
 	gui_Box2_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box2_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
@@ -79,14 +79,15 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_button_alles_löschen->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::AllesLöschen, this));
 	gui_button_löschen->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::AuswahlLöschen, this));
 	gui_button_Set->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set, this));
+	
 	//Erstellen
 	gui_Window2->Add(GUI::gui_Box2_vertical);
 	gui_Box2_horizontal->Pack(GUI::gui_comboBox);
 	//gui_Box2_horizontal->Pack(GUI::gui_button_löschen); Fügt den Button  zum auswahl Löschen hinzu
 	gui_Box2_horizontal->Pack(GUI::gui_button_alles_löschen);
-	gui_Box2_horizontal2->Pack(gui_Entry_pos_x);
-	gui_Box2_horizontal2->Pack(gui_Entry_pos_y);
-	gui_Box2_horizontal2->Pack(gui_Entry_Ladung);
+	gui_Box2_horizontal2->Pack(Create_Input("X: ", gui_Entry_pos_x, "m"));
+	gui_Box2_horizontal2->Pack(Create_Input("Y: ", gui_Entry_pos_y, "m"));
+	gui_Box2_horizontal2->Pack(Create_Input("Q: ", gui_Entry_Ladung, "C"));
 	gui_Box2_horizontal2->Pack(gui_button_Set);
 	gui_Box2_vertical->Pack(GUI::gui_Box2_horizontal);
 	gui_Box2_vertical->Pack(sfg::Separator::Create());
@@ -95,12 +96,12 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 
 	//-----------------------------------------------------------
 
-	//Window 3
+	//Window 3 - Fenster Einstellung
 	gui_Window3 = sfg::Window::Create();
 	gui_Box3_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box3_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
-	//gui_Box3_horizontal3 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
-	gui_Box3_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
+	//gui_Box3_horizontal3 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.f);
+	gui_Box3_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 10.f);
 	gui_button_löschen2 = sfg::Button::Create();
 	gui_button_Set2 = sfg::Button::Create();
 	gui_Entry_pos_x_min = sfg::Entry::Create();
@@ -120,14 +121,32 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_button_löschen2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Reset_E, this));
 	gui_button_Set2->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Set_E, this));
 
+	//Input
+	auto Vertikal1 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+	auto Vertikal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+	
+	gui_Entry_pos_x_max->SetRequisition(sf::Vector2f(50, 0));
+	gui_Entry_pos_x_scl->SetRequisition(sf::Vector2f(50, 0));
+	gui_Entry_pos_x_min->SetRequisition(sf::Vector2f(50, 0));
+	gui_Entry_pos_y_scl->SetRequisition(sf::Vector2f(50, 0));
+
+	Vertikal1->Pack(Create_Input("x_max:", gui_Entry_pos_x_max, "m", 45));
+	Vertikal1->Pack(Create_Input("x_scl:", gui_Entry_pos_x_scl, "m", 45));
+	Vertikal2->Pack(Create_Input("x_min:", gui_Entry_pos_x_min, "m", 45));
+	Vertikal2->Pack(Create_Input("y_scl:", gui_Entry_pos_y_scl, "m", 45));
 	//Set Layout Einstellung
 	gui_Window3->Add(gui_Box3_vertical);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
+	/*
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_max);
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_min);
 	gui_Box3_horizontal->Pack(gui_Entry_pos_x_scl);
 	gui_Box3_horizontal->Pack(gui_Entry_pos_y_scl);
+	*/
+	gui_Box3_horizontal->Pack(Vertikal1);
+	gui_Box3_horizontal->Pack(Vertikal2);
+
 	gui_Box3_vertical->SetSpacing(5.);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
 	gui_Box3_horizontal2->Pack(gui_button_Set2);
@@ -316,6 +335,22 @@ void GUI::Darstellung_Keine()
 	sim.Draw_Pfeil_var = false;
 	sim.Draw_Feldlinien_var = false;
 	sim.Draw_Äquipotentiallinien_var = false;
+}
+
+std::shared_ptr<sfg::Box> GUI::Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size )
+{
+	auto out = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 1.f);
+	auto a = sfg::Label::Create(name);
+	auto b = sfg::Label::Create(Einheit);
+
+	a->SetRequisition(sf::Vector2f(name_Alloc_Size, 0));
+	b->SetRequisition(sf::Vector2f(10, 0));
+
+	out->Pack(a, false);
+	out->Pack(input);
+	out->Pack(b, false);
+	
+	return out;
 }
 
 
