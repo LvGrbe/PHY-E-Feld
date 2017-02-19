@@ -22,12 +22,13 @@ void Darstellung_Feldlinien::Update()
 {
 	Lines.clear();
 	line_counter = 0;
-	std::thread t[30];
+
+	std::vector<std::thread> t;
 
 	for (int i = 0; i != (*Teilchen_vec).size(); i++)
 	{
 		efl = i;
-		t[i] = std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20);
+		t.push_back(std::thread(&Darstellung_Feldlinien::thread_draw, this, std::ref(Teilchen_vec), i, 20));
 	}
 	for (int x = 0; x != (*Teilchen_vec).size(); x++)
 	{

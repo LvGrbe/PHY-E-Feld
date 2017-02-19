@@ -27,6 +27,14 @@ public:
 	//Grid
 	std::vector<sf::VertexArray> gridvar;
 	std::vector<sf::VertexArray> grid();
+
+public: // Drag/Drop // Select
+
+	void OnMauseDown(sf::Vector2i pos);
+	void OnMauseUp(sf::Vector2i pos);
+	void OnMauseMove(sf::Vector2i pos);
+
+	void Fill_Set_Dialog();
 private:
 	
 	Simulation sim;
@@ -69,7 +77,10 @@ private:
    std::shared_ptr<sfg::Button> gui_button_d_Pfeil;
    std::shared_ptr<sfg::Button> gui_button_d_Linien;
    std::shared_ptr<sfg::Button> gui_button_d_Reset;
+
+   // Selection
    int last_auswahl;
+   int Move_auswahl = -1;
 
    bool Point_On_Window(sf::Vector2i pos);
     

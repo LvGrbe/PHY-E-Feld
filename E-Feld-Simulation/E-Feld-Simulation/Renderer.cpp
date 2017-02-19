@@ -46,6 +46,18 @@ int Renderer::run()
 				gui.gridvar = gui.grid();
 
 			}
+			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+			{
+				gui.OnMauseDown(sf::Mouse::getPosition(*renderWindow));
+			}
+			else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+			{
+				gui.OnMauseUp(sf::Mouse::getPosition(*renderWindow));
+			}
+			else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+			{
+				gui.OnMauseMove(sf::Mouse::getPosition(*renderWindow));
+			}
 			
 		}
 		

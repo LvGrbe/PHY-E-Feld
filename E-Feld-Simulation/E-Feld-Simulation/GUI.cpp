@@ -308,6 +308,9 @@ void GUI::Darstellung_Keine()
 
 void GUI::Ladung_Auswählen(int NR)
 {
+	if (Simulation::Teilchen_vec.size() == 0)
+		return;
+
 	if (!(last_auswahl > Simulation::Teilchen_vec.size()) )
 	{
 		Simulation::Teilchen_vec[last_auswahl].Ausgewaehlt = false;
@@ -404,6 +407,67 @@ std::vector<sf::VertexArray> GUI::grid()
 	}
 	return vec_vertex;
 
+}
+
+void GUI::OnMauseDown(sf::Vector2i pos)
+{
+	sf::Vector2f Sim_Pos = InConvert::To_Sim(sf::Vector2f(pos));
+
+	int Ladung = -1;
+	for (int i = 0; i != Simulation::Teilchen_vec.size(); i++)
+	{
+		if (Simulation::Teilchen_vec[i].OnPoint(sf::Vector2f(Sim_Pos)))
+		{
+			Ladung = i;
+			break;
+		}
+	}
+	
+
+	if (Ladung != -1)
+	{
+		this->Ladung_Auswählen(Ladung);
+		this->Fill_Set_Dialog();
+
+		Move_auswahl = Ladung;
+	}
+
+}
+
+void GUI::OnMauseUp(sf::Vector2i pos)
+{
+	
+
+	Move_auswahl = -1;
+}
+
+void GUI::OnMauseMove(sf::Vector2i pos)
+{
+
+	if (Move_auswahl != -1 && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		Simulation::Teilchen_vec[Move_auswahl].pos = InConvert::To_Sim(sf::Vector2f(pos));
+	}
+
+	Fill_Set_Dialog();
+}
+
+void GUI::Fill_Set_Dialog()
+{
+	if (Simulation::Teilchen_vec.size() < last_auswahl + 1)
+		return;
+	gui_comboBox->SelectItem(last_auswahl);
+
+	std::stringstream ss;
+	ss << Simulation::Teilchen_vec[last_auswahl].pos.x;
+	gui_Entry_pos_x->SetText(ss.str());
+	ss.str("");
+	ss << Simulation::Teilchen_vec[last_auswahl].pos.y;
+	gui_Entry_pos_y->SetText(ss.str());
+	ss.str("");
+	ss << Simulation::Teilchen_vec[last_auswahl].Q;
+	gui_Entry_Ladung->SetText(ss.str());
+	ss.str("");
 }
 
 
