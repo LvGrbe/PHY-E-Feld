@@ -32,7 +32,7 @@ void Darstellung_Pfeil::Draw()
 	Rotation.rotate(angle, sf::Mouse::getPosition(*df_Window).x, sf::Mouse::getPosition(*df_Window).y);
 	
 	//Text Einstellungen
-	oss << "Die Elektrische Feldstärke am Punkt X:" <<  " " << simkoords.x << "" << "Y:" << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke);
+	oss << "Die Elektrische Feldstärke am Punkt X:" <<  " " << simkoords.x << " " << "Y:" << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke) << " "<< "V/m";
 	std::string var = oss.str();
 
 	//Ausgabe Potenzial //Alpha Status to do
