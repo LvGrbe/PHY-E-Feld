@@ -89,10 +89,6 @@ int Renderer::run()
 		{
 			sim.Draw_Pfeil();
 		}
-		else if (sim.Draw_Äquipotentiallinien_var)
-		{
-			sim.Draw_Äquipotentiallinien();
-		}
 
 		gui.gui_sfgui.Display(*renderWindow);
 

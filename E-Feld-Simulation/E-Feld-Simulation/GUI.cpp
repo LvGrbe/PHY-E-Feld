@@ -159,24 +159,24 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_Box4 = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
 	gui_button_d_Pfeil = sfg::Button::Create();
 	gui_button_d_Linien = sfg::Button::Create();
-	gui_button_d_Äquipotentiallinien = sfg::Button::Create();
+	gui_button_d_Windows = sfg::Button::Create();
 	gui_button_d_Reset = sfg::Button::Create();
 	gui_Window4->SetTitle("Darstellung");
 	gui_Window4->SetPosition(sf::Vector2f(200, 400));
 	gui_button_d_Pfeil->SetLabel("Pfeil");
 	gui_button_d_Linien->SetLabel("Linien");
-	gui_button_d_Äquipotentiallinien->SetLabel("Äquipotentiallinien");
 	gui_button_d_Reset->SetLabel("Keine");
+	gui_button_d_Windows->SetLabel("Fenster ausblenden");
 	//Signals
 	gui_button_d_Pfeil->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Set, this));
 	gui_button_d_Linien->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Feld_Linien, this));
-	gui_button_d_Äquipotentiallinien->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Äquipotentiallinien, this));
 	gui_button_d_Reset->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Keine, this));
+	gui_button_d_Windows->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Darstellung_Fenster, this));
 
 	gui_Window4->Add(gui_Box4);
 	gui_Box4->Pack(gui_button_d_Pfeil);
 	gui_Box4->Pack(gui_button_d_Linien);
-	gui_Box4->Pack(gui_button_d_Äquipotentiallinien);
+	gui_Box4->Pack(gui_button_d_Windows);
 	gui_Box4->Pack(gui_button_d_Reset);
 	gui_Desktop->Add(gui_Window4);
 }
@@ -315,26 +315,31 @@ void GUI::Darstellung_Feld_Set()
 {
 	sim.Draw_Feldlinien_var = false;
 	sim.Draw_Pfeil_var = true;
-	sim.Draw_Äquipotentiallinien_var = false;
 }
 
 void GUI::Darstellung_Feld_Linien()
 {
 	sim.Draw_Feldlinien_var = true;
 	sim.Draw_Pfeil_var = false;
-	sim.Draw_Äquipotentiallinien_var = false;
+
 }
 
-void GUI::Darstellung_Äquipotentiallinien()
+void GUI::Darstellung_Fenster()
 {
-	sim.Draw_Äquipotentiallinien_var = true;
+	gui_Window->Show(false);
+	gui_Window2->Show(false);
+	gui_Window3->Show(false);
+
 }
 
 void GUI::Darstellung_Keine()
 {
 	sim.Draw_Pfeil_var = false;
 	sim.Draw_Feldlinien_var = false;
-	sim.Draw_Äquipotentiallinien_var = false;
+
+	gui_Window->Show(true);
+	gui_Window2->Show(true);
+	gui_Window3->Show(true);
 }
 
 std::shared_ptr<sfg::Box> GUI::Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size )

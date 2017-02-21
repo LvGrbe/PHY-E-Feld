@@ -6,7 +6,6 @@
 #include "Punktladung.h"
 #include "Darstellung_Feldlinien.h"
 #include "Darstellung_Pfeil.h"
-#include "Äquipotentiallinien.h"
 
 class Simulation
 {
@@ -26,11 +25,9 @@ public:
 
 	Darstellung_Pfeil df;
 	Darstellung_Feldlinien dfl;
-	Äquipotentiallinien afl;
 
 	static bool Draw_Pfeil_var;
 	static bool Draw_Feldlinien_var;
-	static bool Draw_Äquipotentiallinien_var;
 	std::shared_ptr<sf::RenderWindow> sim_RenderWindow;
 
 };

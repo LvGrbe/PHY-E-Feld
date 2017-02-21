@@ -166,7 +166,6 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Punktladung.cpp" />
-    <ClCompile Include="Äquipotentiallinien.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Darstellung_Feldlinien.h" />
@@ -176,7 +175,6 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Punktladung.h" />
-    <ClInclude Include="Äquipotentiallinien.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math_PH.h" />
