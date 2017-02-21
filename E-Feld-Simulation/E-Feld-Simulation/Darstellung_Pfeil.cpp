@@ -35,11 +35,6 @@ void Darstellung_Pfeil::Draw()
 	oss << "Die Elektrische Feldstärke am Punkt X:" <<  " " << simkoords.x << " " << "Y:" << " " << simkoords.y  << " " << "betraegt" << " " << Physik::Länge_Vektor(Elektrische_Feldstärke) << " "<< "V/m";
 	std::string var = oss.str();
 
-	//Ausgabe Potenzial //Alpha Status to do
-	auto d = Physik::Potenzial_Viele(InConvert::To_Sim((sf::Vector2f)sf::Mouse::getPosition(*df_Window)), Teilchen_vec);
-	std::cout << "Das Potenzial beträgt: " << d << std::endl;
-
-
 	text->setString(var);
 	text->setCharacterSize(12);
 	text->setColor(sf::Color::Black);
