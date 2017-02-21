@@ -100,7 +100,6 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_Window3 = sfg::Window::Create();
 	gui_Box3_vertical = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
 	gui_Box3_horizontal2 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5.f);
-	//gui_Box3_horizontal3 = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.f);
 	gui_Box3_horizontal = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 10.f);
 	gui_button_löschen2 = sfg::Button::Create();
 	gui_button_Set2 = sfg::Button::Create();
@@ -138,12 +137,6 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_Window3->Add(gui_Box3_vertical);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal);
 	gui_Box3_vertical->Pack(gui_Box3_horizontal2);
-	/*
-	gui_Box3_horizontal->Pack(gui_Entry_pos_x_max);
-	gui_Box3_horizontal->Pack(gui_Entry_pos_x_min);
-	gui_Box3_horizontal->Pack(gui_Entry_pos_x_scl);
-	gui_Box3_horizontal->Pack(gui_Entry_pos_y_scl);
-	*/
 	gui_Box3_horizontal->Pack(Vertikal1);
 	gui_Box3_horizontal->Pack(Vertikal2);
 
@@ -238,12 +231,9 @@ void GUI::Button_Erstelle_Click()
 void GUI::ComboAuswahl()
 {
 	if (Simulation::Teilchen_vec.size() < last_auswahl)
+	{ 
 		return;
-
-	/*Simulation::Teilchen_vec[last_auswahl].col = sf::Color::Blue;
-	int auswahl = gui_comboBox->GetSelectedItem();
-	last_auswahl = auswahl;
-	Simulation::Teilchen_vec[auswahl].col = sf::Color::Red;*/
+    }
 
 	int auswahl = gui_comboBox->GetSelectedItem();
 	Ladung_Auswählen(auswahl);
@@ -280,30 +270,32 @@ void GUI::AllesLöschen()
 void GUI::Set()
 {
 	int auswahl = gui_comboBox->GetSelectedItem();
-	if (auswahl < 0)
+	if (auswahl <= 1)
 	{
 	}
 	else
 	{
-		Simulation::Teilchen_vec[auswahl].pos.x = std::stof(gui_Entry_pos_x->GetText().toAnsiString().c_str());
-		Simulation::Teilchen_vec[auswahl].pos.y = std::stof(gui_Entry_pos_y->GetText().toAnsiString().c_str());
-		Simulation::Teilchen_vec[auswahl].Q = std::stof(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
+		
+			Simulation::Teilchen_vec[auswahl].pos.x = std::stof(gui_Entry_pos_x->GetText().toAnsiString().c_str());
+			Simulation::Teilchen_vec[auswahl].pos.y = std::stof(gui_Entry_pos_y->GetText().toAnsiString().c_str());
+			Simulation::Teilchen_vec[auswahl].Q = std::stof(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
 
-		Ladung_Endwählen();
-		gui_Entry_Ladung->SetText("Ladung");
-		gui_Entry_pos_x->SetText("x:");
-		gui_Entry_pos_y->SetText("y:");
+			Ladung_Endwählen();
+			gui_Entry_Ladung->SetText("Ladung");
+			gui_Entry_pos_x->SetText("x:");
+			gui_Entry_pos_y->SetText("y:");
 
-		Simulation::aktuelle_Teilchen_zahl = 0;
+			Simulation::aktuelle_Teilchen_zahl = 0;
+			
 	}
 }
 
 void GUI::Set_E()
 {
-	
-	InConvert::set(std::stof(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_y_scl->GetText().toAnsiString().c_str()));
 
-	gridvar = grid();
+		InConvert::set(std::stof(gui_Entry_pos_x_max->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_min->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_x_scl->GetText().toAnsiString().c_str()), std::stof(gui_Entry_pos_y_scl->GetText().toAnsiString().c_str()));
+
+		gridvar = grid();
 
 }
 
