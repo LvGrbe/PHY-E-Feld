@@ -62,8 +62,6 @@ int Renderer::run()
 		gui.gui_Desktop->Update(m_gui_Timer.restart().asSeconds());
 
 
-		 
-
 		renderWindow->clear(sf::Color::White);
 
 		
