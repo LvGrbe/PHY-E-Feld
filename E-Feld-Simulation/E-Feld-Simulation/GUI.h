@@ -79,6 +79,12 @@ private:
    std::shared_ptr<sfg::Button> gui_button_d_Linien;
    std::shared_ptr<sfg::Button> gui_button_d_Windows;
    std::shared_ptr<sfg::Button> gui_button_d_Reset;
+   //Window 5
+   std::shared_ptr<sfg::Window>  gui_Window5;
+   std::shared_ptr<sfg::Box> gui_Box5;
+   std::shared_ptr<sfg::Button> gui_button_save;
+   std::shared_ptr<sfg::Button> gui_button_load;
+   std::shared_ptr<sfg::Button> gui_button_take_image;
 
    // Selection
    int last_auswahl;
@@ -105,6 +111,10 @@ private:
    void Darstellung_Fenster();
    void Darstellung_Keine();
 
+   //Signale 5
+   void Load_Vorlage();
+   void Save_Vorlage();
+   void take_Imgae();
 
 private: // Helper Funktions
 	std::shared_ptr<sfg::Box> Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size = 20);

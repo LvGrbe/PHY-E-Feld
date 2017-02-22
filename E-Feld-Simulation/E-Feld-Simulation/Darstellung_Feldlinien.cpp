@@ -8,7 +8,7 @@ Darstellung_Feldlinien::Darstellung_Feldlinien()
 }
 
 Darstellung_Feldlinien::Darstellung_Feldlinien(std::shared_ptr<sf::RenderWindow> Window, std::vector<Punktladung>* teilchen)
-	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color::Green)
+	: dFl_RenderWindow(Window), Teilchen_vec(teilchen), m_Color(sf::Color(50, 205, 50))
 {
 }
 
