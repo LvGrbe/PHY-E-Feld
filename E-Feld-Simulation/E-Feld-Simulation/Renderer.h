@@ -8,6 +8,8 @@
 #include <SFGUI\SFGUI.hpp>
 #include <SFGUI\Widgets.hpp>
 #include <memory>
+#include <Windows.h>
+#include <Shobjidl.h>
 
 class Renderer
 {
@@ -25,6 +27,6 @@ public:
 
 	sf::Clock m_gui_Timer;
 	
-
+	void take_screenshot();
 };
 

@@ -327,6 +327,10 @@ void GUI::Set_E()
 
 void GUI::Reset_E()
 {
+	gui_Entry_pos_x_min->SetText("x_min:");
+	gui_Entry_pos_x_max->SetText("x_max:");
+	gui_Entry_pos_x_scl->SetText("x_scl:");
+	gui_Entry_pos_y_scl->SetText("y_scl:");
 }
 
 void GUI::Darstellung_Feld_Set()
@@ -422,7 +426,7 @@ void GUI::Save_Vorlage()
 {
 	COMDLG_FILTERSPEC a;
 	a.pszName = L"Text";
-	a.pszSpec = L"*.txt";
+	a.pszSpec = L".txt";
 
 	IFileSaveDialog *savefile = NULL;
 	HRESULT hr = CoCreateInstance(CLSID_FileSaveDialog, NULL, CLSCTX_INPROC_SERVER, IID_IFileDialog, (void**)&savefile);
@@ -452,8 +456,7 @@ void GUI::Save_Vorlage()
 	CoUninitialize();
 
 	std::fstream f;
-	PWSTR b = L".txt";
-	wcscat(pszFilePath, b);
+	wcscat(pszFilePath, a.pszSpec);
 	f.open(pszFilePath, std::ios::out | std::ios::trunc);
 	for (int i = 0; i < sim.Teilchen_vec.size(); i++)
 	{

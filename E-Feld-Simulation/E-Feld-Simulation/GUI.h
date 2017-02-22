@@ -20,10 +20,8 @@ public:
 	GUI();
 	~GUI();
 
-
 	static sfg::SFGUI gui_sfgui;
 	static std::shared_ptr<sfg::Desktop> gui_Desktop;
-	//
 
 	void Ladung_Auswählen(int NR);
 	void Ladung_Endwählen();
@@ -117,8 +115,6 @@ private:
    void Load_Vorlage();
    void Save_Vorlage();
    void take_Imgae();
-
-
 
 private: // Helper Funktions
 	std::shared_ptr<sfg::Box> Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size = 20);

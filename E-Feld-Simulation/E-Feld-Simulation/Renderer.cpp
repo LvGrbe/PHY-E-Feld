@@ -7,14 +7,11 @@ GUI Renderer::gui = GUI(Renderer::renderWindow, Renderer::sim);
 
 Renderer::Renderer()
 {	
-	
 }
 
 Renderer::~Renderer()
 {
-
 }
-
 
 // Window loop funktion
 int Renderer::run()
@@ -96,8 +93,7 @@ int Renderer::run()
 		}
 		else
 		{
-			sf::Image screenshot = renderWindow->capture();
-			screenshot.saveToFile("sc.png");
+			take_screenshot();
 			gui.take_screenshot = false;
 		}
 
@@ -107,6 +103,51 @@ int Renderer::run()
 	}
 
 	return 0;
+}
+
+void Renderer::take_screenshot()
+{
+	sf::Image screenshot = renderWindow->capture();
+
+	COMDLG_FILTERSPEC rgSpec[] =
+	{
+		{ L"JPG", L".jpg" },
+		{ L"PNG", L".png" },
+	};
+	UINT type;
+
+	IFileSaveDialog *savefile = NULL;
+	HRESULT hr = CoCreateInstance(CLSID_FileSaveDialog, NULL, CLSCTX_INPROC_SERVER, IID_IFileDialog, (void**)&savefile);
+	PWSTR pszFilePath;
+	if (SUCCEEDED(hr))
+	{
+		savefile->SetFileTypes(2, rgSpec);
+		savefile->Show(NULL);
+		IShellItem *Item;
+		hr = savefile->GetResult(&Item);
+		if (SUCCEEDED(hr))
+		{
+			Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+			savefile->GetFileTypeIndex(&type);
+		}
+		else
+		{
+			savefile->Release();
+			return;
+		}
+		savefile->Release();
+	}
+	else
+	{
+		MessageBoxA(NULL, "Error Create FileSaveDialog", "Error", MB_OK);
+		return;
+	}
+	CoUninitialize();
+
+	char szBuffer[255];
+	WideCharToMultiByte(CP_ACP, 0, wcscat(pszFilePath, rgSpec[type -1].pszSpec), -1, szBuffer, sizeof(szBuffer), NULL, NULL);
+
+	screenshot.saveToFile(szBuffer);
 }
 
 
