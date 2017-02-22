@@ -9,7 +9,7 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	last_auswahl = 0;
 	gui_RenderWindow = Window;
 	sim = sim;
-
+	take_screenshot = false;
 //---------------------------------------------------------------------------
 	//Window
 	//Erstellung der Elemente
@@ -361,17 +361,97 @@ void GUI::Darstellung_Keine()
 }
 
 void GUI::Load_Vorlage()
-{
+{ 
+	sim.Teilchen_vec.clear();
+	IFileOpenDialog *openfile = NULL;
+	HRESULT hr = CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, IID_IFileDialog, (void**)&openfile);
+	PWSTR pszFilePath;
+	if (SUCCEEDED(hr))
+	{
+			openfile->Show(NULL);
+
+			IShellItem *Item;
+			hr = openfile->GetResult(&Item);
+			
+			Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+
+			openfile->Release();
+	}
+	else
+	{
+		MessageBoxA(NULL, "Error Create FileOpenDialog", "Error", MB_OK);
+		return;
+	}
+	CoUninitialize();
+
+	std::fstream f;
+	std::string s;
+	f.open(pszFilePath, std::ios::in);
+	while (!f.eof())
+	{
+
+		getline(f, s);
+		if (s != "")
+		{
+			
+			std::string ladung = s.substr(0, s.find(','));
+			s.erase(0, s.find(',') + sizeof(','));
+			std::string x = s.substr(0, s.find(','));
+			s.erase(0, s.find(',') + sizeof(','));
+			std::string y = s.substr(0, s.find(';'));
+
+			sim.Teilchen_vec.push_back(Punktladung(std::stof(ladung.c_str()), sf::Vector2f(std::stof(x.c_str()), std::stof(y.c_str()))));
+			std::stringstream ss;
+			ss << (Simulation::Teilchen_vec.size() - 1);
+			std::string str = "Ladung: " + ss.str();
+			gui_comboBox->AppendItem(str);
+		}
+		
+	}
+	f.close();
+
 }
 
 void GUI::Save_Vorlage()
 {
+	COMDLG_FILTERSPEC a;
+	a.pszName = L"Text";
+	a.pszSpec = L"*.txt";
+
+	IFileSaveDialog *savefile = NULL;
+	HRESULT hr = CoCreateInstance(CLSID_FileSaveDialog, NULL, CLSCTX_INPROC_SERVER, IID_IFileDialog, (void**)&savefile);
+	PWSTR pszFilePath;
+	if (SUCCEEDED(hr))
+	{
+		savefile->SetFileTypes(1, &a);
+		savefile->Show(NULL);
+		IShellItem *Item;
+		hr = savefile->GetResult(&Item);
+
+		Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+
+		savefile->Release();
+	}
+	else
+	{
+		MessageBoxA(NULL, "Error Create FileSaveDialog", "Error", MB_OK);
+		return;
+	}
+	CoUninitialize();
+
+	std::fstream f;
+	f.open(pszFilePath, std::ios::out);
+	for (int i = 0; i < sim.Teilchen_vec.size(); i++)
+	{
+		f << sim.Teilchen_vec[i].Q << "," << sim.Teilchen_vec[i].pos.x << "," << sim.Teilchen_vec[i].pos.y << ";" << "\n";
+	}
+	f.close();
+
 }
 
 void GUI::take_Imgae()
 {
-	sf::Image screenshot = gui_RenderWindow->capture();
-	screenshot.saveToFile("sc.png");
+	take_screenshot = true;
 }
 
 std::shared_ptr<sfg::Box> GUI::Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size )

@@ -90,8 +90,16 @@ int Renderer::run()
 			sim.Draw_Pfeil();
 		}
 
-		gui.gui_sfgui.Display(*renderWindow);
-
+		if (!gui.take_screenshot)
+		{
+			gui.gui_sfgui.Display(*renderWindow);
+		}
+		else
+		{
+			sf::Image screenshot = renderWindow->capture();
+			screenshot.saveToFile("sc.png");
+			gui.take_screenshot = false;
+		}
 
 		renderWindow->display();
 

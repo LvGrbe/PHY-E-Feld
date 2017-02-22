@@ -10,6 +10,8 @@
 #include <SFGUI\Widgets.hpp>
 #include <memory>
 #include <Windows.h>
+#include <Shobjidl.h>
+#include <fstream>
 
 class GUI
 {
@@ -28,7 +30,7 @@ public:
 	//Grid
 	std::vector<sf::VertexArray> gridvar;
 	std::vector<sf::VertexArray> grid();
-
+	bool take_screenshot;
 public: // Drag/Drop // Select
 
 	void OnMauseDown(sf::Vector2i pos);
@@ -115,6 +117,8 @@ private:
    void Load_Vorlage();
    void Save_Vorlage();
    void take_Imgae();
+
+
 
 private: // Helper Funktions
 	std::shared_ptr<sfg::Box> Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size = 20);
