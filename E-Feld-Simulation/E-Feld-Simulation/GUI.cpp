@@ -172,6 +172,32 @@ GUI::GUI(std::shared_ptr<sf::RenderWindow> Window,Simulation sim)
 	gui_Box4->Pack(gui_button_d_Windows);
 	gui_Box4->Pack(gui_button_d_Reset);
 	gui_Desktop->Add(gui_Window4);
+
+
+	//Window 5
+	gui_Window5 = sfg::Window::Create();
+	gui_Box5 = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 5.f);
+	gui_button_save = sfg::Button::Create();
+	gui_button_load = sfg::Button::Create();
+	gui_button_take_image = sfg::Button::Create();
+
+	//Ini
+	gui_Window5->SetTitle("Vorlagen und Image");
+	gui_Window5->SetPosition(sf::Vector2f(300, 400));
+	gui_button_save->SetLabel("Speichern");
+	gui_button_load->SetLabel("Laden");
+	gui_button_take_image->SetLabel("Bild");
+	gui_button_save->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Save_Vorlage, this));
+	gui_button_load->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::Load_Vorlage, this));
+	gui_button_take_image->GetSignal(sfg::Button::OnLeftClick).Connect(std::bind(&GUI::take_Imgae, this));
+
+
+	gui_Window5->Add(gui_Box5);
+	gui_Box5->Pack(gui_button_save);
+	gui_Box5->Pack(gui_button_load);
+	gui_Box5->Pack(gui_button_take_image);
+	gui_Desktop->Add(gui_Window5);
+
 }
 
 GUI::GUI()
@@ -332,6 +358,20 @@ void GUI::Darstellung_Keine()
 	gui_Window->Show(true);
 	gui_Window2->Show(true);
 	gui_Window3->Show(true);
+}
+
+void GUI::Load_Vorlage()
+{
+}
+
+void GUI::Save_Vorlage()
+{
+}
+
+void GUI::take_Imgae()
+{
+	sf::Image screenshot = gui_RenderWindow->capture();
+	screenshot.saveToFile("sc.png");
 }
 
 std::shared_ptr<sfg::Box> GUI::Create_Input(std::string name, std::shared_ptr<sfg::Entry> input, std::string Einheit, float name_Alloc_Size )
