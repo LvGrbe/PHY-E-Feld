@@ -372,9 +372,15 @@ void GUI::Load_Vorlage()
 
 			IShellItem *Item;
 			hr = openfile->GetResult(&Item);
-			
-			Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
-
+			if (SUCCEEDED(hr))
+			{
+				Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+			}
+			else
+			{
+				openfile->Release();
+				return;
+			}
 			openfile->Release();
 	}
 	else
@@ -427,9 +433,15 @@ void GUI::Save_Vorlage()
 		savefile->Show(NULL);
 		IShellItem *Item;
 		hr = savefile->GetResult(&Item);
-
-		Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
-
+		if (SUCCEEDED(hr))
+		{
+			Item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+		}
+		else
+		{
+			savefile->Release();
+			return;
+		}
 		savefile->Release();
 	}
 	else
@@ -440,7 +452,9 @@ void GUI::Save_Vorlage()
 	CoUninitialize();
 
 	std::fstream f;
-	f.open(pszFilePath, std::ios::out);
+	PWSTR b = L".txt";
+	wcscat(pszFilePath, b);
+	f.open(pszFilePath, std::ios::out | std::ios::trunc);
 	for (int i = 0; i < sim.Teilchen_vec.size(); i++)
 	{
 		f << sim.Teilchen_vec[i].Q << "," << sim.Teilchen_vec[i].pos.x << "," << sim.Teilchen_vec[i].pos.y << ";" << "\n";
