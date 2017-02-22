@@ -9,6 +9,7 @@
 #include <SFGUI\SFGUI.hpp>
 #include <SFGUI\Widgets.hpp>
 #include <memory>
+#include <Windows.h>
 
 class GUI
 {
