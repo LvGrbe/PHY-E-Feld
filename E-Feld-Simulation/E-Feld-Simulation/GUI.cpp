@@ -296,7 +296,7 @@ void GUI::AllesLöschen()
 void GUI::Set()
 {
 	int auswahl = gui_comboBox->GetSelectedItem();
-	if (auswahl <= 1)
+	if (auswahl < 0)
 	{
 	}
 	else
@@ -307,12 +307,9 @@ void GUI::Set()
 			Simulation::Teilchen_vec[auswahl].Q = std::stof(gui_Entry_Ladung->GetText().toAnsiString().c_str()); //Nicht sehr genau bisher her keine Nachkommer stellen
 
 			Ladung_Endwählen();
-			gui_Entry_Ladung->SetText("Ladung");
-			gui_Entry_pos_x->SetText("x:");
-			gui_Entry_pos_y->SetText("y:");
 
 			Simulation::aktuelle_Teilchen_zahl = 0;
-			
+			gui_comboBox->SelectItem(auswahl);
 	}
 }
 
@@ -510,6 +507,7 @@ void GUI::Ladung_Endwählen()
 	{
 		Simulation::Teilchen_vec[last_auswahl].Ausgewaehlt = false;
 	}
+	
 }
 
 std::vector<sf::VertexArray> GUI::grid()
