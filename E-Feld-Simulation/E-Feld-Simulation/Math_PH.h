@@ -19,18 +19,7 @@ namespace Physik
     {
         return (( 1/(4 * M_PI * Elektrische_Feldkonstante ))*((Ladung_1 * Ladung_2) / r));
     }
-	 
-	static Physik_Value Elektrische_Feldstärke_Allgemein(Physik_Value Kraft, Physik_Value Elektrische_Ladung)
-	{
-		return (Kraft / Elektrische_Ladung );
-	}
-
-	static Physik_Value Elektrische_Feldstärke_Kondensator(Physik_Value Spannung, Physik_Value Abstand)
-	{
-		return (Spannung / Abstand);
-	}
-
-	
+		
 	static float Länge_Vektor(sf::Vector2f a)
 	{
 		return sqrt(pow(a.x, 2) + pow(a.y, 2));
