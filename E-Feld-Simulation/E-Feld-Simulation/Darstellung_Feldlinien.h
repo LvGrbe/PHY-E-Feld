@@ -21,8 +21,7 @@ public:
 	sf::Color m_Color;
 
 
-	std::vector<sf::VertexArray> Lines;
-	static int line_counter;
+
 	void thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen,int anzahl_linien);
 
 private:

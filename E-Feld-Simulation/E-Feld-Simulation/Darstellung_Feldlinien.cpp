@@ -1,7 +1,7 @@
 #include "Darstellung_Feldlinien.h"
 
 std::mutex mutex_Lines;
-int Darstellung_Feldlinien::line_counter = 0;
+
 
 Darstellung_Feldlinien::Darstellung_Feldlinien()
 {
@@ -19,8 +19,7 @@ Darstellung_Feldlinien::~Darstellung_Feldlinien()
 
 void Darstellung_Feldlinien::Update()
 {
-	Lines.clear();
-	line_counter = 0;
+	
 
 	std::vector<std::thread> t;
 
@@ -39,11 +38,14 @@ void Darstellung_Feldlinien::Update()
 
 void Darstellung_Feldlinien::Draw()
 {
-	for (int i = 0; i != Lines.size(); i++)
+	for (int l = 0; l != (*Teilchen_vec).size(); l++)
 	{
+		for (int i = 0; i != (*Teilchen_vec)[l].Lines.size(); i++)
+		{
 
-		dFl_RenderWindow->draw(Lines[i]);
-		
+			dFl_RenderWindow->draw((*Teilchen_vec)[l].Lines[i]);
+
+		}
 	}
 
 
@@ -51,6 +53,8 @@ void Darstellung_Feldlinien::Draw()
 
 void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen, int anzahl_linien)
 {
+	(*Teilchenv)[teilchen].Lines.clear();
+	int count = 0;
 
 	for (int n = 0; n != anzahl_linien; n++)
 	{
@@ -58,15 +62,15 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 		sf::Vector2f Start_pos = (*Teilchenv)[teilchen].pos + sf::Vector2f(std::cos(Winkel * M_PI / 180), std::sin(Winkel * M_PI / 180)) * (InConvert::Get_X_On_Sim(5.f) - InConvert::Get_X_On_Sim(0));
 
 		mutex_Lines.lock();
-		Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
-		Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
+		(*Teilchen_vec)[teilchen].Lines.push_back(sf::VertexArray(sf::PrimitiveType::LineStrip));
+		(*Teilchen_vec)[teilchen].Lines[count].append(sf::Vertex(InConvert::To_Screen(Start_pos), m_Color));
 
 		bool ende = false;
 		for (int s = 0; s != 3000 && (*Teilchen_vec)[teilchen].Q != 0 && !ende; s++)
 		{
 			
 			auto t = Next_Pos(Start_pos, (*Teilchen_vec)[teilchen].Q > 0);
-			Lines[line_counter].append(sf::Vertex(InConvert::To_Screen(t), m_Color));			
+			(*Teilchen_vec)[teilchen].Lines[count].append(sf::Vertex(InConvert::To_Screen(t), m_Color));
 			Start_pos = t;
 			
 			for (int T = 0; T != (*Teilchen_vec).size(); T++)
@@ -80,7 +84,7 @@ void Darstellung_Feldlinien::thread_draw(std::vector<Punktladung>* Teilchenv,int
 
 		}
 		
-		line_counter++;
+		count++;
 		mutex_Lines.unlock();
 	}
 

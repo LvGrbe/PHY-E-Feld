@@ -16,6 +16,8 @@ public:
 	sf::Color col;
 	sf::CircleShape Erstelle_Kreis_Ladung(double Radius);
 
+	std::vector<sf::VertexArray> Lines;
+
 	bool Ausgewaehlt;
 };
 
