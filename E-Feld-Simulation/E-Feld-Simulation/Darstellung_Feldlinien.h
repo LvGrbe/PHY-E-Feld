@@ -4,7 +4,6 @@
 #include "Math_PH.h"
 #include "Punktladung.h"
 #include <thread>
-#include <mutex>
 
 class Darstellung_Feldlinien
 {
@@ -20,10 +19,8 @@ public:
 	int anzahl_Feldlinien;
 	sf::Color m_Color;
 
-
-
-	void thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen,int anzahl_linien);
-
+	void thread_draw(std::vector<Punktladung>* Teilchenv,int teilchen,int anzahl_linien,bool* inDraw);
+	bool* inDraw;
 private:
 	std::shared_ptr<sf::RenderWindow> dFl_RenderWindow;
 	sf::Vector2f Next_Pos(sf::Vector2f pos,  bool Positiv);

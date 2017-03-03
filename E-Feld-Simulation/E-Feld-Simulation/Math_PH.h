@@ -10,15 +10,6 @@ typedef long double Physik_Value;
 
 namespace Physik 
 {
-    /* Satz des Pytagoras 
-        a in m  
-        b in m 
-        return c in m
-    */
-    static Physik_Value Satz_des_Pytagoras(Physik_Value a, Physik_Value b)
-    {
-        return sqrt(pow(a, 2) + pow(b, 2));
-    }
 
     /* Coulomb'sches Gesetz
         Ladung_1 & Ladung_2 in c
