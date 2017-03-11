@@ -137,7 +137,7 @@ void Renderer::take_screenshot()
 	}
 	else
 	{
-		MessageBoxA(NULL, "Error Create FileSaveDialog", "Error", MB_OK);
+		MessageBoxA(NULL, "Error Create PictureSaveDialog", "Error", MB_OK);
 		return;
 	}
 	CoUninitialize();

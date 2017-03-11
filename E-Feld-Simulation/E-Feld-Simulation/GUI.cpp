@@ -416,7 +416,7 @@ void GUI::Load_Vorlage()
 		
 	}
 	f.close();
-
+	Simulation::aktuelle_Teilchen_zahl = 0;
 }
 
 void GUI::Save_Vorlage()
