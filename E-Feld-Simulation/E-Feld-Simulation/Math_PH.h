@@ -10,15 +10,6 @@ typedef long double Physik_Value;
 
 namespace Physik 
 {
-
-    /* Coulomb'sches Gesetz
-        Ladung_1 & Ladung_2 in c
-        r in m
-    */
-    static Physik_Value Coulomb_sches_gesetz(Physik_Value Ladung_1, Physik_Value Ladung_2, Physik_Value r)
-    {
-        return (( 1/(4 * M_PI * Elektrische_Feldkonstante ))*((Ladung_1 * Ladung_2) / r));
-    }
 		
 	static float Länge_Vektor(sf::Vector2f a)
 	{
