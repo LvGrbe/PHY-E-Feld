@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "e-feld-simulation",
+  "version": "1.3.0",
+  "dependencies": [
+    "sfml",
+    "sfgui"
+  ]
+}
